@@ -10,7 +10,7 @@ public class TesteInsere {
 		Contatos c = new Contatos();
 		
 		c.setId(8828);
-		c.setNome("Trollminhas");
+		c.setNome("smks");
 		c.setEmail("thomas@gmail.com");
 		c.setEndereco("rua sao joao");
 		
