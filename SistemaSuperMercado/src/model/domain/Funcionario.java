@@ -1,6 +1,6 @@
 package model.domain;
 
-public abstract class Funcionario {
+public abstract class Funcionario { // funcionario deve ser instanciado
     protected int idFuncionario;
     protected String nomeFuncionario;
 
