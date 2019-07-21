@@ -10,10 +10,12 @@ public class FuncionarioComum extends Funcionario {
     public void setIdFuncinario(int id){
         this.idFuncionario = id;
     }
+    
     @Override
     public String getNomeFuncionario(){
         return nomeFuncionario;
     }
+    
     @Override
     public  void setNomeFuncionario(String nome){
         this.nomeFuncionario = nome;

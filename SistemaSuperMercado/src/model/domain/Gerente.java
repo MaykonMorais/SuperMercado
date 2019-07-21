@@ -15,6 +15,7 @@ public class Gerente extends Funcionario {
     public int getIdFuncionario(){
         return idFuncionario;
     }
+    
     @Override
     public void setIdFuncinario(int id){
         this.idFuncionario = id;

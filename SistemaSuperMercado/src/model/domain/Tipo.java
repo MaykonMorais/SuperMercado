@@ -1,3 +1,5 @@
+package model.domain;
+
 public class Tipo {
 	private int coditoTipo;
 	private String nomeTipo;

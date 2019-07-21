@@ -1,3 +1,4 @@
+package model.domain;
 
 public abstract class Cliente{
 	String idCliente;
