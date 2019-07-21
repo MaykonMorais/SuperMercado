@@ -18,7 +18,7 @@ public class ContatosDAO {
 			
 			PreparedStatement ps;
 			try {
-				ps = con.prepareStatement(sql);
+				ps = con.prepareStatement(sql); // insert
 				
 				ps.setInt(1, c.getId());
 				ps.setString(2, c.getNome());

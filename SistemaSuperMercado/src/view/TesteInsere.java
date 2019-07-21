@@ -9,8 +9,8 @@ public class TesteInsere {
 		ContatosDAO dao = new ContatosDAO();
 		Contatos c = new Contatos();
 		
-		c.setId(23);
-		c.setNome("smks");
+		c.setId(3283);
+		c.setNome("levino");
 		c.setEmail("thomas@gmail.com");
 		c.setEndereco("rua sao joao");
 		
