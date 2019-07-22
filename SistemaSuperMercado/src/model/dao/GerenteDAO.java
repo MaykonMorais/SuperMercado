@@ -5,7 +5,6 @@ import javax.swing.JOptionPane;
 
 public class GerenteDAO {
 	
-	
 	public void autenticar(String login, String senha) {
 		if(login.equals("admin") && senha.equals("admin")) {
 			JOptionPane.showMessageDialog(null, "Logou");

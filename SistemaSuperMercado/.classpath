@@ -6,6 +6,11 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="Utilitarios/postgresql-42.2.6.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="lib" path="Utilitarios/javafx-swt.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
@@ -42,11 +47,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="Utilitarios/javafx.web.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="Utilitarios/postgresql-42.2.6.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
