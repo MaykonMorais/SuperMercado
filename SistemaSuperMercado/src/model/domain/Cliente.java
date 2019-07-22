@@ -1,10 +1,17 @@
 package model.domain;
 
 public abstract class Cliente{
-	String idCliente;
+	protected int idCliente;
+
+	public Cliente (int idCliente) {
+		setIdCliente(idCliente);
+	}
 	
-	public abstract String getIdCliente();
+	public int getIdCliente() {
+		return idCliente;
+	}
 
-	public abstract void setIdCliente(String id);
-
+	public void setIdCliente(int idCliente) {
+		this.idCliente = idCliente;
+	}
 }

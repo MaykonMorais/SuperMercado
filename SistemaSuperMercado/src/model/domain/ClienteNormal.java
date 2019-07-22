@@ -1,10 +1,10 @@
 package model.domain;
 
 public class ClienteNormal extends Cliente{
-	public String getIdCliente(){
-		return idCliente;
+	// achar atributo que o diferencia do outro
+	
+	public ClienteNormal(int idCliente) {
+		super(idCliente);
 	}
-	public void setIdCliente(String id){
-		this.idCliente=id;
-	}
+	
 }

@@ -4,7 +4,12 @@ public class Gerente extends Funcionario { // integridade de dados
     private String nomeUsuario;
 	private String senhaGerente;
 
-    public String getNomeUsuario() {
+	// gerente vai usar um método autenticar no sistema (interface) 
+    public Gerente(int idFuncionario, String nomeUsuario, String senhaGerente) {
+    	
+    }
+	
+	public String getNomeUsuario() {
 		return nomeUsuario;
 	}
 
@@ -20,21 +25,4 @@ public class Gerente extends Funcionario { // integridade de dados
         this.senhaGerente = senhaGerente;
     }
     
-    @Override
-    public int getIdFuncionario(){
-        return idFuncionario;
-    }
-    
-    @Override
-    public void setIdFuncinario(int id){
-        this.idFuncionario = id;
-    }
-    @Override
-    public String getNomeFuncionario(){
-        return nomeFuncionario;
-    }
-    @Override
-    public  void setNomeFuncionario(String nome){
-        this.nomeFuncionario = nome;
-    }
-}
+}	
