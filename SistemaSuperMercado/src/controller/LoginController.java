@@ -14,7 +14,7 @@ public class LoginController {
 	GerenteDAO gerente;
 	
 	@FXML protected void autenticar(ActionEvent event) {
-		gerente = new GerenteDAO();
+		gerente = new GerenteDAO(); // exemplo
 		
 		gerente.autenticar(login.getText(), senha.getText());
 	}
