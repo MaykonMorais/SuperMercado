@@ -1,31 +1,27 @@
 package model.domain;
 
 public class Tipo {
-	private int coditoTipo;
+	private int idTipo;
 	private String nomeTipo;
-	private String unidadeMedida;
-
-	public String getUnidadeMedida() {
-		return unidadeMedida;
+	private String formaVenda;
+	
+	
+	public int getIdTipo() {
+		return idTipo;
 	}
-
-	public int getCoditoTipo() {
-		return coditoTipo;
+	public void setIdTipo(int idTipo) {
+		this.idTipo = idTipo;
 	}
-
-	public void setCoditoTipo(int coditoTipo) {
-		this.coditoTipo = coditoTipo;
-	}
-
 	public String getNomeTipo() {
 		return nomeTipo;
 	}
-
 	public void setNomeTipo(String nomeTipo) {
 		this.nomeTipo = nomeTipo;
 	}
-
-	public void setUnidadeMedida(String unidadeMedida) {
-		this.unidadeMedida = unidadeMedida;
+	public String getFormaVenda() {
+		return formaVenda;
+	}
+	public void setFormaVenda(String formaVenda) {
+		this.formaVenda = formaVenda;
 	}
 }

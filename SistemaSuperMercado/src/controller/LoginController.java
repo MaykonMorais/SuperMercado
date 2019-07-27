@@ -1,5 +1,6 @@
 package controller;
 import model.dao.GerenteDAO;
+import model.principal.LoginModelFuncionario;
 import view.Principal;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -11,13 +12,14 @@ public class LoginController {
 	@FXML private Label confirm;
 	@FXML private TextField login;
 	@FXML private PasswordField senha;
-	GerenteDAO gerente;
+	
+	private LoginModelFuncionario f;
 	private Principal tela;
 	
 	@FXML protected void autenticar(ActionEvent event) {
-		gerente = new GerenteDAO(); // exemplo
+		f = new LoginModelFuncionario(); // exemplo
 		
-		boolean pass = gerente.autenticar(login.getText(), senha.getText());
+		boolean pass = f.verificaFuncionario(login.getText(), senha.getText());
 		if(pass) {
 			tela = new Principal();
 			tela.telaProdutos();

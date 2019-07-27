@@ -5,12 +5,4 @@ import javax.swing.JOptionPane;
 
 public class GerenteDAO {
 	
-	public boolean autenticar(String login, String senha) {
-		if(login.equals("admin") && senha.equals("admin")) {
-			return true;
-		}
-		else {
-			return false;
-		}
-	}
 }

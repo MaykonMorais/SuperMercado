@@ -1,41 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TelaProdutos">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="537.0" prefWidth="827.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TelaDeProdutos">
    <children>
-      <MenuBar prefHeight="29.0" prefWidth="600.0">
-        <menus>
-          <Menu mnemonicParsing="false" text="File">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Close" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Edit">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Delete" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <items>
-              <MenuItem mnemonicParsing="false" text="About" />
-            </items>
-          </Menu>
-            <Menu mnemonicParsing="false" text="Sair">
-               <items>
-                  <MenuItem mnemonicParsing="false" onAction="#sair" text="Fazer Logout" />
-               </items>
-            </Menu>
-        </menus>
-      </MenuBar>
-      <TextField layoutY="29.0" onAction="#procurarProduto" prefHeight="26.0" prefWidth="188.0" promptText="Produto" />
-      <TreeTableView layoutY="59.0" prefHeight="341.0" prefWidth="188.0">
+      <AnchorPane opacity="0.61" prefHeight="52.0" prefWidth="827.0" style="-fx-background-color: #1771F1;">
+         <children>
+            <Button layoutX="762.0" layoutY="13.0" mnemonicParsing="false" onAction="#sair" prefHeight="26.0" prefWidth="51.0" text="Sair" />
+         </children>
+      </AnchorPane>
+      <TableView fx:id="carrinho" layoutX="35.0" layoutY="111.0" prefHeight="377.0" prefWidth="564.0">
         <columns>
-          <TreeTableColumn prefWidth="187.0" text="Produtos" />
+          <TableColumn fx:id="qtd" prefWidth="75.0" text="Qtd" />
+          <TableColumn fx:id="produto" prefWidth="148.0" text="Produto" />
+            <TableColumn fx:id="valorProduto" prefWidth="122.0" text="Valor Unitario" />
+            <TableColumn fx:id="valorProduto" prefWidth="95.0" text="Valor Total" />
+            <TableColumn fx:id="codigoProduto" prefWidth="122.0" text="Codigo" />
         </columns>
-      </TreeTableView>
+      </TableView>
+      <AnchorPane layoutX="607.0" layoutY="111.0" prefHeight="275.0" prefWidth="215.0" style="-fx-border-style: solid;">
+         <children>
+            <Text fontSmoothingType="LCD" layoutX="14.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Valor Total" wrappingWidth="141.0">
+               <font>
+                  <Font size="21.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+      <Button layoutX="607.0" layoutY="416.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="100.0" text="Cancelar " />
+      <Button layoutX="715.0" layoutY="416.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="100.0" text="Finalizar" />
+      <TextField fx:id="qtdProduto" layoutX="35.0" layoutY="70.0" prefHeight="26.0" prefWidth="91.0" promptText="Qtd" />
+      <TextField fx:id="nomeProduto" layoutX="138.0" layoutY="70.0" prefHeight="26.0" prefWidth="328.0" promptText="Nome Do Produto" />
+      <Text layoutX="35.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quantidade" wrappingWidth="91.0" />
+      <Text layoutX="138.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Produto" wrappingWidth="128.7294921875" />
+      <Button layoutX="499.0" layoutY="70.0" mnemonicParsing="false" onAction="#adicionarProduto" style="-fx-background-color: #1db9ff;" text="Adiconar" />
    </children>
 </Pane>

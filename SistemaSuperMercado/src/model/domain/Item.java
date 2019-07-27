@@ -3,10 +3,19 @@ package model.domain;
 public class Item {
     private int idItem;
     private String marcaItem;
+    private int qtdEstoque;
     private double precoItem;
-    private String nomeItem;
+    
+    
 
-    public int getIdItem() {
+    public Item(int idItem, String marcaItem, int qtdEstoque, double precoItem) {
+		this.idItem = idItem;
+		this.marcaItem = marcaItem;
+		this.qtdEstoque = qtdEstoque;
+		this.precoItem = precoItem;
+	}
+
+	public int getIdItem() {
         return idItem;
     }
 
@@ -26,16 +35,17 @@ public class Item {
         this.marcaItem = marcaItem;
     }
 
-    public String getNomeItem() {
-        return nomeItem;
-    }
-
-    public void setNomeItem(String nomeItem) {
-        this.nomeItem = nomeItem;
-    }
-
+    
     public void setIdItem(int idItem) {
         this.idItem = idItem;
     }
+
+	public int getQtdEstoque() {
+		return qtdEstoque;
+	}
+
+	public void setQtdEstoque(int qtdEstoque) {
+		this.qtdEstoque = qtdEstoque;
+	}
 
 }
