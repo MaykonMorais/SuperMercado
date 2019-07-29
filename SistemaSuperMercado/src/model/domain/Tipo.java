@@ -5,6 +5,11 @@ public class Tipo {
 	private String nomeTipo;
 	private String formaVenda;
 	
+	public Tipo(int codigoTipo,String nomeTipo,String UnidadeMedida) {
+		setIdTipo(codigoTipo);
+		setNomeTipo(nomeTipo);
+		setFormaVenda(UnidadeMedida);
+	}
 	
 	public int getIdTipo() {
 		return idTipo;

@@ -1,43 +1,48 @@
 package controller;
 
 import java.net.URL;
-import java.util.Observable;
 import java.util.ResourceBundle;
 
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableArray;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import view.Principal;
+import javafx.util.Callback;
+import model.dao.ItemDAO;
+import model.domain.Carrinho;
 import model.domain.Item;
+import view.Principal;
+import model.dao.CarrinhoDAO;
 
 public class TelaDeProdutos {
-	private Principal tela;
-	
-    @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
 
     @FXML
     private TableView<Item> carrinho;
-
+    
     @FXML
-    private TableColumn<Item, Integer > qtd;
-
+    private TextField valorTotal;
+    
     @FXML
-    private TableColumn<Item, String> produto;
+    private TableColumn<Item, Integer> qtd;
+    
+    @FXML 
+    private TableColumn<Item, Integer> idProduto;
+    
+    @FXML
+    private TableColumn<Item, String> marca;
 
     @FXML
     private TableColumn<Item, Double> valorProduto;
 
-    @FXML
-    private TableColumn<Item, String> codigoProduto;
+    //private TableColumn<Carrinho, Double> ValorTotal;
 
     @FXML
     private TextField qtdProduto;
@@ -45,20 +50,27 @@ public class TelaDeProdutos {
     @FXML
     private TextField nomeProduto;
 
+
     @FXML
     void adicionarProduto(ActionEvent event) {
-
+    	ItemDAO i = new ItemDAO();
+    	
+    	ObservableList<Item> p = FXCollections.observableArrayList(i.itemProcura(nomeProduto.getText()));
+    	
+    
+    	if(!p.isEmpty()) {
+    		idProduto.setCellValueFactory(new PropertyValueFactory<>("idItem"));
+    		marca.setCellValueFactory(new PropertyValueFactory<>("marcaItem"));
+    		valorProduto.setCellValueFactory(new PropertyValueFactory<>("precoItem"));
+        	
+        	carrinho.getItems().addAll(p);
+    	}
     }
 
     @FXML
     void sair(ActionEvent event) {
-    	tela = new Principal();
+    	Principal tela = new Principal();
     	tela.telaLogin();
     }
-
-    @FXML
-    void initialize() {
-    	
-    }
-    
 }
+

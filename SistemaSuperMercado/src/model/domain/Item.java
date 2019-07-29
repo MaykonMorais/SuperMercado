@@ -6,14 +6,6 @@ public class Item {
     private int qtdEstoque;
     private double precoItem;
     
-    
-
-    public Item(int idItem, String marcaItem, int qtdEstoque, double precoItem) {
-		this.idItem = idItem;
-		this.marcaItem = marcaItem;
-		this.qtdEstoque = qtdEstoque;
-		this.precoItem = precoItem;
-	}
 
 	public int getIdItem() {
         return idItem;
