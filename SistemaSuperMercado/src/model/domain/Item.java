@@ -6,6 +6,13 @@ public class Item {
     private int qtdEstoque;
     private double precoItem;
     
+    public Item(int idItem,String marcaItem,int qtdEstoque,double precoItem) {
+    	setIdItem(idItem);
+    	setMarcaItem(marcaItem);
+    	setQtdEstoque(qtdEstoque);
+    	setPrecoItem(precoItem);
+    }
+    
 	public int getIdItem() {
         return idItem;
     }

@@ -23,8 +23,8 @@ public class CarrinhoDAO {
 		
 		try {
 			PreparedStatement prepara = connect.prepareStatement(sql);
-			prepara.setInt(1, carrinho.getIdCarrinho());
-			prepara.setInt(2, carrinho.getCliente().getIdCliente());
+			//prepara.setInt(1, carrinho.getIdCarrinho());
+			//prepara.setInt(2, carrinho.getCliente().getIdCliente());
 			prepara.setInt(3, item.getIdItem());
 			prepara.setInt(4, carrinho.getQtdItem());
 			

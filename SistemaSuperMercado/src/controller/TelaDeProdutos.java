@@ -23,7 +23,7 @@ import model.domain.Item;
 import view.Principal;
 import model.dao.CarrinhoDAO;
 
-public class TelaDeProdutos {
+public class TelaDeProdutos implements Initializable {
 
     @FXML
     private TableView<Item> carrinho;
@@ -55,7 +55,7 @@ public class TelaDeProdutos {
     	
     	ItemDAO i = new ItemDAO();
     	
-    	ObservableList<Item> x  =  i.itemProcura(nomeProduto.getText());
+    	ObservableList<Item> x  = i.consultaTotal(); // i.itemProcura(nomeProduto.getText());
     	ObservableList<Item> p = x; 
     			//FXCollections.observableArrayList(i.itemProcura(nomeProduto.getText()));
 
@@ -78,5 +78,19 @@ public class TelaDeProdutos {
     	Principal tela = new Principal();
     	tela.telaLogin();
     }
+    @FXML
+    void finalizar(ActionEvent event) {
+    	
+    }
+    @FXML
+    void cancelar(ActionEvent event) {
+    	
+    }
+
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		// TODO Auto-generated method stub
+		Carrinho carrinho = new Carrinho();
+	}
 }
 
