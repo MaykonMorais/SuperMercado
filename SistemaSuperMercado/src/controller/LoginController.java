@@ -24,11 +24,12 @@ public class LoginController {
 	@FXML protected void autenticar(ActionEvent event) {
 		f = new LoginModelFuncionario(); // exemplo
 		
-		boolean pass = f.verificaFuncionario(login.getText(), senha.getText());
+		boolean pass;
 		
 		if(verifica.isSelected()) {
 			tela = new Principal();
 			tela.telaGerente();
 		}	
+		
 	}
 }
