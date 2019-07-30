@@ -1,6 +1,7 @@
 package controller;
 
 import java.net.URL;
+import java.util.Observable;
 import java.util.ResourceBundle;
 
 import javafx.beans.value.ObservableValue;
@@ -28,9 +29,6 @@ public class TelaDeProdutos {
     private TableView<Item> carrinho;
     
     @FXML
-    private TextField valorTotal;
-    
-    @FXML
     private TableColumn<Item, Integer> qtd;
     
     @FXML 
@@ -42,28 +40,36 @@ public class TelaDeProdutos {
     @FXML
     private TableColumn<Item, Double> valorProduto;
 
-    //private TableColumn<Carrinho, Double> ValorTotal;
-
-    @FXML
-    private TextField qtdProduto;
-
     @FXML
     private TextField nomeProduto;
 
-
+    @FXML
+    private TextField valorTotal;
+    
+    Double valTot = 0.0;
+    int indice = 0;
+    
     @FXML
     void adicionarProduto(ActionEvent event) {
+    	valorTotal.setDisable(true);
+    	
     	ItemDAO i = new ItemDAO();
     	
-    	ObservableList<Item> p = FXCollections.observableArrayList(i.itemProcura(nomeProduto.getText()));
+    	ObservableList<Item> x  =  i.itemProcura(nomeProduto.getText());
+    	ObservableList<Item> p = x; 
+    			//FXCollections.observableArrayList(i.itemProcura(nomeProduto.getText()));
+
     	
-    
+    	valTot += x.get(0).getPrecoItem();
     	if(!p.isEmpty()) {
+    		valorTotal.setText(valTot.toString().format("%.2f", valTot));
+    		
     		idProduto.setCellValueFactory(new PropertyValueFactory<>("idItem"));
     		marca.setCellValueFactory(new PropertyValueFactory<>("marcaItem"));
     		valorProduto.setCellValueFactory(new PropertyValueFactory<>("precoItem"));
         	
         	carrinho.getItems().addAll(p);
+        	
     	}
     }
 

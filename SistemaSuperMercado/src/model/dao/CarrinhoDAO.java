@@ -14,7 +14,6 @@ import model.domain.Carrinho;
 import model.domain.Item;
 
 public class CarrinhoDAO {
-	
 	//gerente
 	public void carrinhoAdiciona(Item item, Carrinho carrinho) {
 		carrinho.getItems().add(item);

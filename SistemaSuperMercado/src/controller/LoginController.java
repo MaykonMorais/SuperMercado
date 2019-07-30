@@ -2,6 +2,9 @@ package controller;
 import model.dao.GerenteDAO;
 import model.principal.LoginModelFuncionario;
 import view.Principal;
+
+import javax.swing.JOptionPane;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -20,6 +23,7 @@ public class LoginController {
 		f = new LoginModelFuncionario(); // exemplo
 		
 		boolean pass = f.verificaFuncionario(login.getText(), senha.getText());
+		
 		if(pass) {
 			tela = new Principal();
 			tela.telaProdutos();

@@ -30,14 +30,14 @@
                   <Font size="21.0" />
                </font>
             </Text>
-            <TextField fx:id="valorTotal" layoutX="142.0" layoutY="47.0" prefHeight="26.0" prefWidth="51.0" promptText="0.0" />
-            <Text layoutX="116.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="R$" wrappingWidth="32.7294921875" />
+            <TextField fx:id="valorTotal" alignment="CENTER" layoutX="142.0" layoutY="47.0" prefHeight="26.0" prefWidth="64.0" promptText="0.0" />
+            <Text layoutX="105.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="R$" wrappingWidth="32.7294921875" />
             <Text fontSmoothingType="LCD" layoutX="14.0" layoutY="108.0" strokeType="OUTSIDE" strokeWidth="0.0" text="IdCompra" wrappingWidth="141.0">
                <font>
                   <Font size="21.0" />
                </font>
             </Text>
-            <TextField layoutX="17.0" layoutY="125.0" prefHeight="26.0" prefWidth="176.0" promptText="012931-3" />
+            <TextField fx:id="IdCompra" layoutX="17.0" layoutY="125.0" prefHeight="26.0" prefWidth="176.0" promptText="012931-3" />
          </children>
       </AnchorPane>
       <Button layoutX="607.0" layoutY="416.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="100.0" style="-fx-background-color: #de3335;" text="Cancelar " />
