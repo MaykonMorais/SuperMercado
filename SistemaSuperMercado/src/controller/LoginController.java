@@ -26,10 +26,9 @@ public class LoginController {
 		
 		boolean pass = f.verificaFuncionario(login.getText(), senha.getText());
 		
-		if(pass) {
+		if(verifica.isSelected()) {
 			tela = new Principal();
-			tela.telaProdutos();
-		}
-		
+			tela.telaGerente();
+		}	
 	}
 }
