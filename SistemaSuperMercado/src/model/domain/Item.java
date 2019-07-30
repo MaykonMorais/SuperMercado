@@ -6,7 +6,6 @@ public class Item {
     private int qtdEstoque;
     private double precoItem;
     
-
 	public int getIdItem() {
         return idItem;
     }

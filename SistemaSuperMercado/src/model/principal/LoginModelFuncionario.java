@@ -15,11 +15,12 @@ public class LoginModelFuncionario {
 		try {
 			PreparedStatement recebe = conect.prepareStatement(sql);
 			ResultSet verificaBD = recebe.executeQuery();
+			
 			while(verificaBD.next()) {
 				if(verificaBD.getString(2).equals(nomeFuncionario)) {
 						if(verificaBD.getString(3).equals(senhaFuncionario)) {
 						return true;
-						}
+					}
 				}
 			}
 		} catch (SQLException e) {
@@ -27,7 +28,6 @@ public class LoginModelFuncionario {
 			e.printStackTrace();
 		}
 		return false;
-		
 	}
 }
 
