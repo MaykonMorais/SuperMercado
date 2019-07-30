@@ -25,7 +25,7 @@ public class Principal extends Application {
 	
 	public void telaLogin() {
 		try {
-			Parent root = FXMLLoader.load(getClass().getResource("LoginJFX.fxml"));
+			Parent root = (Parent) FXMLLoader.load(getClass().getResource("LoginJFX.fxml"));
 			
 			Scene scene = new Scene(root);
 			
@@ -39,7 +39,7 @@ public class Principal extends Application {
 	
 	public void telaProdutos() {
 		try {
-			Parent tela = FXMLLoader.load(getClass().getResource("TelaProdutos.fxml"));
+			Parent tela = (Parent) FXMLLoader.load(getClass().getResource("TelaProdutos.fxml"));
 			
 			Scene scene = new Scene(tela);
 			stage.setScene(scene);
