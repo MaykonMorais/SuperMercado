@@ -6,10 +6,10 @@ import java.sql.*;
 import model.database.ConnectionFactory;
 
 public class LoginModelGerente {
-	public boolean verificaGerente(int idGerente, String senha) {
+	public boolean verificaGerente(String nome, String senha) {
 		
 		Connection con =  ConnectionFactory.getConnection(); 
-		String sql= "select * from gerente";
+		String sql= "select * from gerente as g inner join funcionario as f on f.idfuncionario = g.idgerente";
 	
 		try {
 		
@@ -17,9 +17,9 @@ public class LoginModelGerente {
 			ResultSet verificaBD = recebe.executeQuery();// faz a requisição do sql
 			while(verificaBD.next()) {
 				
-				if(verificaBD.getInt(2) == idGerente) {// pega do sql e compara
+				if(verificaBD.getString(5).equals(nome)) {// pega do sql e compara
 				
-					if(verificaBD.getString(3).equals(senha)) {	
+					if(verificaBD.getString(6).equals(senha)) {	
 						return true;
 					}
 				}

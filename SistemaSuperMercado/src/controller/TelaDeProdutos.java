@@ -55,7 +55,7 @@ public class TelaDeProdutos implements Initializable {
     	
     	ItemDAO i = new ItemDAO();
     	
-    	ObservableList<Item> x  = i.consultaTotal(); // i.itemProcura(nomeProduto.getText());
+    	ObservableList<Item> x  =  i.itemProcura(nomeProduto.getText());
     	ObservableList<Item> p = x; 
     			//FXCollections.observableArrayList(i.itemProcura(nomeProduto.getText()));
 

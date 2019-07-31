@@ -2,7 +2,7 @@ package controller;
 import model.dao.GerenteDAO;
 import model.principal.LoginModelFuncionario;
 import model.principal.LoginModelGerente;
-import view.Principal;
+import view.*;
 
 import javax.swing.JOptionPane;
 
@@ -26,17 +26,19 @@ public class LoginController {
 	@FXML protected void autenticar(ActionEvent event) {
 		boolean pass;
 		G = new LoginModelGerente();
-		if(verifica.isSelected()) {
-			 pass = G.verificaGerente(1, senha.getText());
+		
+			 pass = G.verificaGerente(login.getText(), senha.getText());
+		if(pass) {
+			tela = new Principal();
+			tela.telaProdutos();
 		}else {
 		f = new LoginModelFuncionario(); // exemplo
-		
 		 pass = f.verificaFuncionario(login.getText(), senha.getText());
-		}
+		
 		 if(pass) {
 			tela = new Principal();
 			tela.telaProdutos();
 		 }
-		
+		}
 	}
 }

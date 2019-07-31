@@ -63,7 +63,7 @@ public class ItemDAO {
 			
 			
 			while(rs.next()) {
-				if(rs.getString(2).equals(marcaItem)) {
+				if(rs.getString(2).equals(marcaItem) || rs.getInt(1) == Integer.parseInt(marcaItem)) {
 					item = new Item(rs.getInt(1),rs.getString(2),rs.getInt(3),rs.getDouble(4));
 					
 					//item.setIdItem(rs.getInt(1));
