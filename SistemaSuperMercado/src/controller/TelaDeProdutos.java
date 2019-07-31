@@ -77,5 +77,10 @@ public class TelaDeProdutos {
     	Principal tela = new Principal();
     	tela.telaLogin();
     }
+    
+    @FXML
+    void finalizarCompra(ActionEvent event) {
+    	
+    }
 }
 

@@ -15,9 +15,4 @@ public class GerenteDAO {
 		this.con = ConnectionFactory.getConnection();
 	}
 	
-	public Gerente verificaGerente(String login, String senha) {
-		PreparedStatement ps;
-			
-	}
-	
 }

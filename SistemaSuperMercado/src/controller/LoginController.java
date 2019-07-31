@@ -1,6 +1,9 @@
 package controller;
 import model.dao.GerenteDAO;
+import model.domain.Funcionario;
+import model.domain.Gerente;
 import model.principal.LoginModelFuncionario;
+import model.principal.LoginModelGerente;
 import view.Principal;
 
 import javax.swing.JOptionPane;
@@ -19,17 +22,36 @@ public class LoginController {
 	@FXML private CheckBox verifica;
 	
 	private LoginModelFuncionario f;
+	private LoginModelGerente g;
 	private Principal tela;
 	
-	@FXML protected void autenticar(ActionEvent event) {
-		f = new LoginModelFuncionario(); // exemplo
-		
+	@FXML protected void autenticar(ActionEvent event) {		
 		boolean pass;
 		
 		if(verifica.isSelected()) {
-			tela = new Principal();
-			tela.telaGerente();
-		}	
+			g = new LoginModelGerente();
+			
+			pass = g.verificaGerente(login.getText(), senha.getText());
+			if(pass) {
+				tela = new Principal();
+				tela.telaGerente();
+			} else {
+				JOptionPane.showMessageDialog(null, "Login ou Senha Incorretos!");
+			}
+		}
 		
+		else {
+			f = new LoginModelFuncionario();
+			
+			pass = f.verificaFuncionario(login.getText(), senha.getText());
+			
+			if(pass) {
+				tela = new Principal();
+				tela.telaProdutos();
+			}
+			else {
+				JOptionPane.showMessageDialog(null, "Login ou Senha Incorretos!");
+			}
+		}
 	}
 }

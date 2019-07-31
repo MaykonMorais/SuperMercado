@@ -43,7 +43,7 @@
             <TreeTableColumn fx:id="qtdEstoque" prefWidth="110.0" text="Qtd. Estoque" />
         </columns>
       </TreeTableView>
-      <AnchorPane layoutX="486.0" layoutY="68.0" prefHeight="354.0" prefWidth="332.0" style="-fx-border-color: #2ee;">
+      <AnchorPane layoutX="486.0" layoutY="68.0" prefHeight="355.0" prefWidth="332.0" style="-fx-border-color: #2ee;">
          <children>
             <TextField fx:id="marcaProduto" alignment="CENTER" layoutX="102.0" layoutY="46.0" promptText="Marca do Produto" />
             <Text layoutX="46.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Marca" wrappingWidth="55.64111328125" />
@@ -59,8 +59,8 @@
       </AnchorPane>
       <Button layoutX="90.0" layoutY="490.0" mnemonicParsing="false" onAction="#editarProduto" prefHeight="35.0" prefWidth="96.0" text="Editar" />
       <Button layoutX="300.0" layoutY="490.0" mnemonicParsing="false" onAction="#removerProduto" prefHeight="35.0" prefWidth="96.0" text="Remover" />
-      <TextField fx:id="procuraItem" layoutX="76.0" layoutY="35.0" prefHeight="26.0" prefWidth="350.0" promptText="Marca ou Item" />
-      <ImageView fitHeight="26.0" fitWidth="28.0" layoutX="448.0" layoutY="35.0" onMouseClicked="#pesquisar" pickOnBounds="true" preserveRatio="true">
+      <TextField fx:id="procuraItem" layoutX="23.0" layoutY="35.0" prefHeight="26.0" prefWidth="350.0" promptText="Marca ou Item" />
+      <ImageView fitHeight="26.0" fitWidth="28.0" layoutX="392.0" layoutY="35.0" onMouseClicked="#pesquisar" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../img/magnifier.png" />
          </image>

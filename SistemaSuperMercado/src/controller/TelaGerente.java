@@ -2,6 +2,8 @@ package controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -9,9 +11,13 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TreeTableColumn;
 import javafx.scene.control.TreeTableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import model.dao.ItemDAO;
+import model.domain.Item;
+import model.domain.Tipo;
 
-public class TelaGerente {
+public class TelaGerente implements Initializable{
 
     @FXML
     private ResourceBundle resources;
@@ -20,20 +26,20 @@ public class TelaGerente {
     private URL location;
 
     @FXML
-    private TreeTableView<?> tabelaProduto;
+    private TreeTableView<Item> tabelaProduto;
+    @FXML
+    private TreeTableColumn<Item, Integer> idProduto;
 
     @FXML
-    private TreeTableColumn<?, ?> idProduto;
+    private TreeTableColumn<Item, String> marca;
 
     @FXML
-    private TreeTableColumn<?, ?> marca;
+    private TreeTableColumn<Item, Double> preco;
 
     @FXML
-    private TreeTableColumn<?, ?> preco;
+    private TreeTableColumn<Item, Integer> qtdEstoque;
 
-    @FXML
-    private TreeTableColumn<?, ?> qtdEstoque;
-
+    // opção de edição 
     @FXML
     private TextField marcaProduto;
 
@@ -44,11 +50,12 @@ public class TelaGerente {
     private TextField qtdProduto;
 
     @FXML
-    private ChoiceBox<?> listaTipos;
+    private ChoiceBox<Tipo> listaTipos;
 
     @FXML
     private TextField procuraItem;
 
+    
     @FXML
     void adicionarProduto(ActionEvent event) {
 
@@ -68,19 +75,16 @@ public class TelaGerente {
     void removerProduto(ActionEvent event) {
 
     }
-
-    @FXML
-    void initialize() {
-        assert tabelaProduto != null : "fx:id=\"tabelaProduto\" was not injected: check your FXML file 'telaGerente.fxml'.";
-        assert idProduto != null : "fx:id=\"idProduto\" was not injected: check your FXML file 'telaGerente.fxml'.";
-        assert marca != null : "fx:id=\"marca\" was not injected: check your FXML file 'telaGerente.fxml'.";
-        assert preco != null : "fx:id=\"preco\" was not injected: check your FXML file 'telaGerente.fxml'.";
-        assert qtdEstoque != null : "fx:id=\"qtdEstoque\" was not injected: check your FXML file 'telaGerente.fxml'.";
-        assert marcaProduto != null : "fx:id=\"marcaProduto\" was not injected: check your FXML file 'telaGerente.fxml'.";
-        assert precoProduto != null : "fx:id=\"precoProduto\" was not injected: check your FXML file 'telaGerente.fxml'.";
-        assert qtdProduto != null : "fx:id=\"qtdProduto\" was not injected: check your FXML file 'telaGerente.fxml'.";
-        assert listaTipos != null : "fx:id=\"listaTipos\" was not injected: check your FXML file 'telaGerente.fxml'.";
-        assert procuraItem != null : "fx:id=\"procuraItem\" was not injected: check your FXML file 'telaGerente.fxml'.";
-
-    }
+    
+    ObservableList<Item> items;
+    
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		
+		ItemDAO i = new ItemDAO();
+		items = i.consultaTotal();
+		
+		idProduto.setCellValueFactory();
+		
+	}
 }
