@@ -48,12 +48,12 @@ public class TelaDeProdutos implements Initializable {
     
     Double valTot = 0.0;
     int indice = 0;
-    
+   private ItemDAO i;
     @FXML
     void adicionarProduto(ActionEvent event) {
     	valorTotal.setDisable(true);
     	
-    	ItemDAO i = new ItemDAO();
+    	i = new ItemDAO();
     	
     	ObservableList<Item> x  =  i.itemProcura(nomeProduto.getText());
     	ObservableList<Item> p = x; 
@@ -84,7 +84,7 @@ public class TelaDeProdutos implements Initializable {
     }
     @FXML
     void cancelar(ActionEvent event) {
-    	
+    	carrinho.getItems().removeAll();
     }
 
 	@Override
