@@ -23,6 +23,7 @@ public class GereciamentoProdutosModel {
 		}
 		else {
 			ItemDAO items = new ItemDAO();
+			
 		}
 	}
 }
