@@ -26,6 +26,7 @@ public class LoginController {
 	private Principal tela;
 	
 	@FXML protected void autenticar(ActionEvent event) {		
+		// model 
 		boolean pass;
 		
 		if(verifica.isSelected()) {

@@ -24,7 +24,6 @@ import view.Principal;
 import model.dao.CarrinhoDAO;
 
 public class TelaDeProdutos {
-
     @FXML
     private TableView<Item> carrinho;
     
@@ -60,6 +59,7 @@ public class TelaDeProdutos {
     			//FXCollections.observableArrayList(i.itemProcura(nomeProduto.getText()));
     	
     	valTot += x.get(0).getPrecoItem();
+    	
     	if(!p.isEmpty()) {
     		valorTotal.setText(valTot.toString().format("%.2f", valTot));
     		

@@ -19,11 +19,11 @@ public class ItemDAO {
 		this.con = ConnectionFactory.getConnection();
 	}
 	
-	public  ObservableList<Item> consultaTotal() {
+	public List<Item> consultaTotal() {
 		PreparedStatement ps;
 		ResultSet rs;
 		
-		ObservableList<Item> items = FXCollections.observableArrayList();
+		List<Item> items = new ArrayList<Item>();
 		
 		try {
 			ps = con.prepareStatement("select * from item");

@@ -5,11 +5,9 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.TreeTableColumn?>
-<?import javafx.scene.control.TreeTableView?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Text?>
@@ -35,14 +33,6 @@
           </Menu>
         </menus>
       </MenuBar>
-      <TreeTableView fx:id="tabelaProduto" layoutX="14.0" layoutY="68.0" prefHeight="414.0" prefWidth="460.0">
-        <columns>
-          <TreeTableColumn fx:id="idProduto" prefWidth="107.0" text="idProduto" />
-          <TreeTableColumn fx:id="marca" prefWidth="120.0" text="Marca" />
-            <TreeTableColumn fx:id="preco" prefWidth="90.0" text="Preco" />
-            <TreeTableColumn fx:id="qtdEstoque" prefWidth="110.0" text="Qtd. Estoque" />
-        </columns>
-      </TreeTableView>
       <AnchorPane layoutX="486.0" layoutY="68.0" prefHeight="355.0" prefWidth="332.0" style="-fx-border-color: #2ee;">
          <children>
             <TextField fx:id="marcaProduto" alignment="CENTER" layoutX="102.0" layoutY="46.0" promptText="Marca do Produto" />
@@ -60,10 +50,15 @@
       <Button layoutX="90.0" layoutY="490.0" mnemonicParsing="false" onAction="#editarProduto" prefHeight="35.0" prefWidth="96.0" text="Editar" />
       <Button layoutX="300.0" layoutY="490.0" mnemonicParsing="false" onAction="#removerProduto" prefHeight="35.0" prefWidth="96.0" text="Remover" />
       <TextField fx:id="procuraItem" layoutX="23.0" layoutY="35.0" prefHeight="26.0" prefWidth="350.0" promptText="Marca ou Item" />
-      <ImageView fitHeight="26.0" fitWidth="28.0" layoutX="392.0" layoutY="35.0" onMouseClicked="#pesquisar" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../img/magnifier.png" />
-         </image>
-      </ImageView>
+      <Button layoutX="396.0" layoutY="35.0" mnemonicParsing="false" onAction="#procurarProduto" text="Procurar" />
+      <Button layoutX="495.0" layoutY="35.0" mnemonicParsing="false" onAction="#listarTodos" text="Listar Todos" />
+      <TableView fx:id="carrinho" layoutX="23.0" layoutY="68.0" prefHeight="416.0" prefWidth="453.0">
+        <columns>
+          <TableColumn fx:id="idProduto" prefWidth="104.0" text="idProduto" />
+          <TableColumn fx:id="marca" prefWidth="134.0" text="Marca" />
+            <TableColumn fx:id="valorProduto" prefWidth="120.0" text="Preço" />
+            <TableColumn fx:id="estoque" prefWidth="93.0" text="Estoque" />
+        </columns>
+      </TableView>
    </children>
 </Pane>
