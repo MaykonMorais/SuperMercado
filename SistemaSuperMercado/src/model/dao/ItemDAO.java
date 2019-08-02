@@ -54,7 +54,7 @@ public class ItemDAO {
 		
 		ObservableList<Item> items = FXCollections.observableArrayList();
 
-		String sql = "select * from item";
+		String sql = "select * from item where marca like'%"+marcaItem+"%'or idItem = "+Integer.parseInt(marcaItem);
 		
 		try {
 			
@@ -63,7 +63,6 @@ public class ItemDAO {
 			
 			
 			while(rs.next()) {
-				if(rs.getString(2).equals(marcaItem) || rs.getInt(1) == Integer.parseInt(marcaItem)) {
 					item = new Item(rs.getInt(1),rs.getString(2),rs.getInt(3),rs.getDouble(4));
 					
 					//item.setIdItem(rs.getInt(1));
@@ -72,7 +71,7 @@ public class ItemDAO {
 					//item.setQtdEstoque(rs.getInt(3));
 					items.add(item);
 					
-				}
+				
 			}
 			rs.close();
 			ps.close();

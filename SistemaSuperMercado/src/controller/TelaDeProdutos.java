@@ -46,16 +46,31 @@ public class TelaDeProdutos implements Initializable {
     @FXML
     private TextField valorTotal;
     
+    @FXML 
+   private TextField quantidadeProduto;
+    
     Double valTot = 0.0;
     int indice = 0;
-   private ItemDAO i;
+    
+   private ItemDAO i;	
+   private Item I;
+   private CarrinhoDAO CD;
+   private Carrinho C;
+   
     @FXML
     void adicionarProduto(ActionEvent event) {
     	valorTotal.setDisable(true);
     	
     	i = new ItemDAO();
     	
-    	ObservableList<Item> x  =  i.itemProcura(nomeProduto.getText());
+    	C.setQtdItem(5);
+    	
+    	String nome=nomeProduto.getText();
+
+    	ObservableList<Item> x  =  i.itemProcura(nome);
+    	
+    	//for(Item ij: x) {CD.carrinhoAdiciona(ij, C);}
+    	
     	ObservableList<Item> p = x; 
     			//FXCollections.observableArrayList(i.itemProcura(nomeProduto.getText()));
 
@@ -80,11 +95,12 @@ public class TelaDeProdutos implements Initializable {
     }
     @FXML
     void finalizar(ActionEvent event) {
-    	
+    	CD.carrinhoAdiciona(I, C);;
     }
     @FXML
     void cancelar(ActionEvent event) {
     	carrinho.getItems().removeAll();
+    	
     }
 
 	@Override
