@@ -36,4 +36,5 @@ public class GereciamentoProdutosModel {
 			items.adicionarProduto(item);		
 		}
 	}
+	
 }

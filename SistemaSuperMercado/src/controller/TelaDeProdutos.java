@@ -21,15 +21,13 @@ import javafx.util.Callback;
 import model.dao.ItemDAO;
 import model.domain.Carrinho;
 import model.domain.Item;
+import model.principal.CarrinhoModel;
 import view.Principal;
 import model.dao.CarrinhoDAO;
 
-<<<<<<< HEAD
-public class TelaDeProdutos {
-=======
-public class TelaDeProdutos implements Initializable {
 
->>>>>>> thomasBranch
+public class TelaDeProdutos {
+
     @FXML
     private TableView<Item> carrinho;
     
@@ -61,7 +59,8 @@ public class TelaDeProdutos implements Initializable {
    private Item I;
    private CarrinhoDAO CD;
    private Carrinho C = new Carrinho();
-    @FXML
+   private CarrinhoModel carro = new CarrinhoModel();
+   @FXML
     void adicionarProduto(ActionEvent event) {
     	
     	valorTotal.setDisable(true);
@@ -74,13 +73,7 @@ public class TelaDeProdutos implements Initializable {
 
     	ObservableList<Item> x  =  i.itemProcura(nome);
     	ObservableList<Item> p = x;
-    	
-<<<<<<< HEAD
-    	ObservableList<Item> x  =  i.itemProcura(nomeProduto.getText());
-    	ObservableList<Item> p = x;
-=======
-    	CD.carrinhoAdiciona(x.get(0).ge, C);
->>>>>>> thomasBranch
+    	carro.adicionar(x, C, quantidade);
     			//FXCollections.observableArrayList(i.itemProcura(nomeProduto.getText()));
     	
     	valTot += x.get(0).getPrecoItem();
@@ -102,28 +95,19 @@ public class TelaDeProdutos implements Initializable {
     	Principal tela = new Principal();
     	tela.telaLogin();
     }
-<<<<<<< HEAD
+
     
     @FXML
     void finalizarCompra(ActionEvent event) {
     	
     }
-=======
-    @FXML
-    void finalizar(ActionEvent event) {
-    	CD.carrinhoAdiciona(I, C);;
-    }
+
     @FXML
     void cancelar(ActionEvent event) {
     	carrinho.getItems().removeAll();
     	
     }
 
-	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
-		Carrinho carrinho = new Carrinho();
-	}
->>>>>>> thomasBranch
+
 }
 

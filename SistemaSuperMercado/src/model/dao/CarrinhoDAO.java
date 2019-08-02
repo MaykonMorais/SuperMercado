@@ -12,19 +12,18 @@ import javafx.collections.ObservableList;
 import model.database.ConnectionFactory;
 import model.domain.Carrinho;
 import model.domain.Item;
-
+import model.domain.Carrinho;
 public class CarrinhoDAO {
 	//gerente
-	public void carrinhoAdiciona(Item item, Carrinho carrinho) {
-		carrinho.getItems().add(item);
-		
+	public void carrinhoAdiciona(Carrinho carrinho,int idItem) {
+
 		Connection connect = ConnectionFactory.getConnection();
 		String sql = "insert into Carrinho values(?,?);";
 		
 		try {
 			PreparedStatement prepara = connect.prepareStatement(sql);
 			
-			prepara.setInt(1, item.getIdItem());
+			prepara.setInt(1, idItem);
 			prepara.setInt(2, carrinho.getQtdItem());
 			
 			prepara.execute();
@@ -36,39 +35,19 @@ public class CarrinhoDAO {
 		}
 	}
 	
-	
-	//carrinho
-		
-	/*
-	public static void carrinhoCompleto() {
-		Connection connect = ConecaToBanco.getConnection();
-		String sql="select T.nomeTipo,I.marca,I.preco from Carrinho as C full join Tipo as T on T.idTipo=C.idItem full join Item as I on I.idTipo = T.idTipo order by I.preco desc;";
-		try {
-			PreparedStatement prepara = connect.prepareStatement(sql);
-			
-			ResultSet verificaBD =prepara.executeQuery();
-			System.out.println("\nNome.....Marca.....Preço");
-			while(verificaBD.next()) {
-				System.out.println("\n"+verificaBD.getString(1)+" ..... "+verificaBD.getString(2)+" ..... "+verificaBD.getString(3));
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			System.out.println("CarrinhoCompleto");
-		}
-	}
-	
 	public static void carrinhoRemove(int i) {
-		Connection connect = ConecaToBanco.getConnection();
-		String sql="delete from Carrinho where idCarrinho = "+i+";";
+		Connection connect = ConnectionFactory.getConnection();
+		String sql="delete from Carrinho where idItem = ? ;";
 		try {
 			PreparedStatement prepara = connect.prepareStatement(sql);
+			prepara.setInt(1,i);
 			prepara.execute();
 			prepara.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			System.out.println("Carrinhoremove");
+			e.printStackTrace();
 		}
 	}
-	*/
-
+	
+	
 }

@@ -7,7 +7,7 @@ public class Item {
     private double precoItem;
     private Tipo tipo;
     
-<<<<<<< HEAD
+
     public Item() {}
     
 	public Item(String marcaItem, int qtdEstoque, double precoItem, int tipo) {
@@ -24,7 +24,7 @@ public class Item {
 		this.tipo = tipo;
 	}
 
-=======
+
     public Item(int idItem,String marcaItem,int qtdEstoque,double precoItem) {
     	setIdItem(idItem);
     	setMarcaItem(marcaItem);
@@ -32,7 +32,7 @@ public class Item {
     	setPrecoItem(precoItem);
     }
     
->>>>>>> thomasBranch
+
 	public int getIdItem() {
         return idItem;
     }

@@ -40,13 +40,13 @@
             <TextField fx:id="IdCompra" layoutX="17.0" layoutY="125.0" prefHeight="26.0" prefWidth="176.0" promptText="012931-3" />
          </children>
       </AnchorPane>
-<<<<<<< HEAD
+
       <Button layoutX="607.0" layoutY="416.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="100.0" style="-fx-background-color: #de3335;" text="Cancelar " />
-      <Button layoutX="715.0" layoutY="416.0" mnemonicParsing="false" onAction="#finalizarCompra" prefHeight="43.0" prefWidth="100.0" style="-fx-background-color: #64ad6a;" text="Finalizar" />
-=======
+     
+
       <Button layoutX="607.0" layoutY="416.0" mnemonicParsing="false" onAction="#cancelar" prefHeight="43.0" prefWidth="100.0" style="-fx-background-color: #de3335;" text="Cancelar " />
       <Button layoutX="715.0" layoutY="416.0" mnemonicParsing="false" onAction="#finalizar" prefHeight="43.0" prefWidth="100.0" style="-fx-background-color: #64ad6a;" text="Finalizar" />
->>>>>>> thomasBranch
+	
       <TextField fx:id="nomeProduto" layoutX="37.0" layoutY="70.0" prefHeight="26.0" prefWidth="429.0" promptText="Nome Do Produto" />
       <Button layoutX="683.0" layoutY="70.0" mnemonicParsing="false" onAction="#adicionarProduto" style="-fx-background-color: #1db9ff;" text="Adiconar" />
       <Text layoutX="35.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Produto" wrappingWidth="128.7294921875">
