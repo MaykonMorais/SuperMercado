@@ -30,11 +30,11 @@ public class ItemDAO {
 			rs = ps.executeQuery();
 			
 			while(rs.next()) {
-				Item item = new Item();
-				item.setIdItem(rs.getInt(1));
-				item.setMarcaItem(rs.getString(2));
-				item.setPrecoItem(rs.getDouble(4));
-				item.setQtdEstoque(rs.getInt(3));
+				Item item = new Item(rs.getInt(1),rs.getString(2),rs.getInt(3),rs.getDouble(4));
+				//item.setIdItem(rs.getInt(1));
+				//item.setMarcaItem(rs.getString(2));
+				//item.setPrecoItem(rs.getDouble(4));
+				//item.setQtdEstoque(rs.getInt(3));
 				
 				items.add(item);
 				
@@ -54,7 +54,7 @@ public class ItemDAO {
 		
 		ObservableList<Item> items = FXCollections.observableArrayList();
 
-		String sql = "select * from item";
+		String sql = "select * from item where marca like'%"+marcaItem+"%'or idItem = "+Integer.parseInt(marcaItem);
 		
 		try {
 			
@@ -63,16 +63,16 @@ public class ItemDAO {
 			
 			
 			while(rs.next()) {
-				if(rs.getString(2).equals(marcaItem)) {
-					item = new Item();
+					if(rs.getString(2).equals(marcaItem) || rs.getInt(1) ==Integer.parseInt(marcaItem)){ 
+						item = new Item(rs.getInt(1),rs.getString(2),rs.getInt(3),rs.getDouble(4));
 					
-					item.setIdItem(rs.getInt(1));
-					item.setMarcaItem(rs.getString(2));
-					item.setPrecoItem(rs.getDouble(4));
-					item.setQtdEstoque(rs.getInt(3));
+					//item.setIdItem(rs.getInt(1));
+					//item.setMarcaItem(rs.getString(2));
+					//item.setPrecoItem(rs.getDouble(4));
+					//item.setQtdEstoque(rs.getInt(3));
 					items.add(item);
-					
-				}
+					}
+				
 			}
 			rs.close();
 			ps.close();

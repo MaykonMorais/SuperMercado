@@ -19,14 +19,13 @@ public class CarrinhoDAO {
 		carrinho.getItems().add(item);
 		
 		Connection connect = ConnectionFactory.getConnection();
-		String sql = "insert into Carrinho values(?,?,?,?);";
+		String sql = "insert into Carrinho values(?,?);";
 		
 		try {
 			PreparedStatement prepara = connect.prepareStatement(sql);
-			prepara.setInt(1, carrinho.getIdCarrinho());
-			prepara.setInt(2, carrinho.getCliente().getIdCliente());
-			prepara.setInt(3, item.getIdItem());
-			prepara.setInt(4, carrinho.getQtdItem());
+			
+			prepara.setInt(1, item.getIdItem());
+			prepara.setInt(2, carrinho.getQtdItem());
 			
 			prepara.execute();
 			prepara.close();

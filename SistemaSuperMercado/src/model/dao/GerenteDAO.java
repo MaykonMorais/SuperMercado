@@ -15,4 +15,9 @@ public class GerenteDAO {
 		this.con = ConnectionFactory.getConnection();
 	}
 	
+<<<<<<< HEAD
+=======
+	
+	
+>>>>>>> thomasBranch
 }
