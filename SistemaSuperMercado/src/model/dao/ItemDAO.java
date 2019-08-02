@@ -63,14 +63,15 @@ public class ItemDAO {
 			
 			
 			while(rs.next()) {
-					item = new Item(rs.getInt(1),rs.getString(2),rs.getInt(3),rs.getDouble(4));
+					if(rs.getString(2).equals(marcaItem) || rs.getInt(1) ==Integer.parseInt(marcaItem)){ 
+						item = new Item(rs.getInt(1),rs.getString(2),rs.getInt(3),rs.getDouble(4));
 					
 					//item.setIdItem(rs.getInt(1));
 					//item.setMarcaItem(rs.getString(2));
 					//item.setPrecoItem(rs.getDouble(4));
 					//item.setQtdEstoque(rs.getInt(3));
 					items.add(item);
-					
+					}
 				
 			}
 			rs.close();

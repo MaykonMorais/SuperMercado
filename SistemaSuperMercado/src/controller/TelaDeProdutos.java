@@ -1,6 +1,7 @@
 package controller;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Observable;
 import java.util.ResourceBundle;
 
@@ -46,7 +47,7 @@ public class TelaDeProdutos implements Initializable {
     @FXML
     private TextField valorTotal;
     
-    @FXML 
+    @FXML
    private TextField quantidadeProduto;
     
     Double valTot = 0.0;
@@ -55,23 +56,22 @@ public class TelaDeProdutos implements Initializable {
    private ItemDAO i;	
    private Item I;
    private CarrinhoDAO CD;
-   private Carrinho C;
-   
+   private Carrinho C = new Carrinho();
     @FXML
     void adicionarProduto(ActionEvent event) {
-    	valorTotal.setDisable(true);
     	
+    	valorTotal.setDisable(true);
+    		
     	i = new ItemDAO();
     	
-    	C.setQtdItem(5);
-    	
+    	int quantidade = Integer.parseInt(quantidadeProduto.getText());
+    	C.setQtdItem(quantidade);
     	String nome=nomeProduto.getText();
 
     	ObservableList<Item> x  =  i.itemProcura(nome);
+    	ObservableList<Item> p = x;
     	
-    	//for(Item ij: x) {CD.carrinhoAdiciona(ij, C);}
-    	
-    	ObservableList<Item> p = x; 
+    	CD.carrinhoAdiciona(x.get(0).ge, C);
     			//FXCollections.observableArrayList(i.itemProcura(nomeProduto.getText()));
 
     	
