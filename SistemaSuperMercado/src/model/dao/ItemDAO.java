@@ -83,5 +83,24 @@ public class ItemDAO {
 		
 		return items;
 	}
-
+	public void adicionarProduto(Item item) {
+		PreparedStatement ps;
+		
+		String sql = "insert into item values (?, ?, ?, ?)";
+		try {
+				ps = con.prepareStatement(sql);
+				
+				ps.setString(1, item.getMarcaItem());
+				ps.setInt(2, item.getQtdEstoque());
+				ps.setDouble(3, item.getPrecoItem());
+				ps.setInt(4, item.getTipo().getIdTipo());
+				
+				ps.execute();
+				ps.close();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
 }

@@ -5,7 +5,24 @@ public class Item {
     private String marcaItem;
     private int qtdEstoque;
     private double precoItem;
+    private Tipo tipo;
     
+    public Item() {}
+    
+	public Item(String marcaItem, int qtdEstoque, double precoItem, int tipo) {
+		this.marcaItem = marcaItem;
+		this.qtdEstoque = qtdEstoque;
+		this.precoItem = precoItem;
+	}
+
+	public Tipo getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(Tipo tipo) {
+		this.tipo = tipo;
+	}
+
 	public int getIdItem() {
         return idItem;
     }

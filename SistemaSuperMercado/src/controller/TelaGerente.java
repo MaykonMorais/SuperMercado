@@ -11,6 +11,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import model.domain.Item;
+import model.domain.Tipo;
 import model.principal.GereciamentoProdutosModel;
 
 public class TelaGerente {
@@ -25,7 +26,7 @@ public class TelaGerente {
     private TextField qtdProduto;
     
     @FXML
-    private ChoiceBox<?> listaTipos;
+    private ChoiceBox<Tipo> listaTipos;
 
     @FXML
     private TextField procuraItem;
@@ -49,7 +50,8 @@ public class TelaGerente {
 
     @FXML
     void adicionarProduto(ActionEvent event) {
-    	
+    	GereciamentoProdutosModel model = new GereciamentoProdutosModel();
+    	model.adicionar(marca.getText(), , qtd, tipo);
     }
 
     @FXML
@@ -57,7 +59,6 @@ public class TelaGerente {
     	
     }
 
-    
     @FXML
     void listarTodos(ActionEvent event) {
     	GereciamentoProdutosModel produtos = new GereciamentoProdutosModel();
