@@ -40,7 +40,7 @@
             <TextField fx:id="IdCompra" layoutX="17.0" layoutY="125.0" prefHeight="26.0" prefWidth="176.0" promptText="012931-3" />
          </children>
       </AnchorPane>
-      <Button layoutX="607.0" layoutY="416.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="100.0" style="-fx-background-color: #de3335;" text="Cancelar " />
+      <Button layoutX="607.0" layoutY="416.0" mnemonicParsing="false" onAction="#cancelar" prefHeight="43.0" prefWidth="100.0" style="-fx-background-color: #de3335;" text="Cancelar " />
       <Button layoutX="715.0" layoutY="416.0" mnemonicParsing="false" onAction="#finalizarCompra" prefHeight="43.0" prefWidth="100.0" style="-fx-background-color: #64ad6a;" text="Finalizar" />
       <TextField fx:id="nomeProduto" layoutX="37.0" layoutY="70.0" prefHeight="26.0" prefWidth="429.0" promptText="Nome Do Produto" />
       <Button layoutX="657.0" layoutY="70.0" mnemonicParsing="false" onAction="#adicionarProduto" style="-fx-background-color: #1db9ff;" text="Adiconar" />

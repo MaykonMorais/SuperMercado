@@ -104,8 +104,7 @@ public class TelaDeProdutos {
 
     @FXML
     void cancelar(ActionEvent event) {
-    	carrinho.getItems().removeAll();
-    	
+    	carro.limparCarrinho();
     }
 
 

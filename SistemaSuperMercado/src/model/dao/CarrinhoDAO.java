@@ -49,5 +49,19 @@ public class CarrinhoDAO {
 		}
 	}
 	
+	public void limpaCarrinho() {
+		Connection connect = ConnectionFactory.getConnection();
+		String id="select idItem from carrinho;";
+		try {
+			PreparedStatement pedeIdItem = connect.prepareStatement(id);
+			ResultSet recebeIdItem = pedeIdItem.executeQuery();
+			while(recebeIdItem.next()) {
+				carrinhoRemove(recebeIdItem.getInt(1));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	
 }
