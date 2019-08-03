@@ -31,9 +31,6 @@ public class TelaDeProdutos {
     @FXML
     private TableView<Item> carrinho;
     
-    @FXML
-    private TableColumn<Item, Integer> qtd;
-    
     @FXML 
     private TableColumn<Item, Integer> idProduto;
     
@@ -42,7 +39,13 @@ public class TelaDeProdutos {
 
     @FXML
     private TableColumn<Item, Double> valorProduto;
-
+    
+    @FXML
+    private TableColumn<Item, Integer> Quantidade;
+    
+    @FXML
+    private TableColumn<Item, Double> Valor;
+    
     @FXML
     private TextField nomeProduto;
 
@@ -52,12 +55,14 @@ public class TelaDeProdutos {
     @FXML
    private TextField quantidadeProduto;
     
+    @FXML
+    private TextField idItem;
+    
     Double valTot = 0.0;
     int indice = 0;
     
    private ItemDAO i;	
-   private Item I;
-   private CarrinhoDAO CD;
+   
    private Carrinho C = new Carrinho();
    private CarrinhoModel carro = new CarrinhoModel();
    @FXML
@@ -70,8 +75,9 @@ public class TelaDeProdutos {
     	int quantidade = Integer.parseInt(quantidadeProduto.getText());
     	C.setQtdItem(quantidade);
     	String nome=nomeProduto.getText();
-
-    	ObservableList<Item> x  =  i.itemProcura(nome);
+    	i.itemProcuraEstoque(nome);// consultar no estoque (atualizado)
+    	ObservableList<Item> x  = i.itemProcura(nome, quantidade); // agora esta passando o item com as informacoes exigidas pelo cliente
+    	//antes estava enviando as informacoes do banco de dados;
     	ObservableList<Item> p = x;
     	carro.adicionar(p, C, quantidade);
     			//FXCollections.observableArrayList(i.itemProcura(nomeProduto.getText()));
@@ -84,7 +90,9 @@ public class TelaDeProdutos {
     		idProduto.setCellValueFactory(new PropertyValueFactory<>("idItem"));
     		marca.setCellValueFactory(new PropertyValueFactory<>("marcaItem"));
     		valorProduto.setCellValueFactory(new PropertyValueFactory<>("precoItem"));
-        	
+    		Quantidade.setCellValueFactory(new PropertyValueFactory<>("qtdEstoque"));
+    	//	Valor.setCellValueFactory(new PropertyValueFactory<>("ValorFinal"));
+    		
         	carrinho.getItems().addAll(p);
         	
     	}
@@ -107,6 +115,10 @@ public class TelaDeProdutos {
     	carro.limparCarrinho();
     }
 
+    @FXML
+    void cancelarItem(ActionEvent event) {
+    	carro.remover(Integer.parseInt(idItem.getText()));
+    }
 
 }
 

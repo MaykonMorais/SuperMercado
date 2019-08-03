@@ -1,11 +1,16 @@
 package model.principal;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.List;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.domain.Carrinho;
 import model.domain.Item;
 import model.dao.CarrinhoDAO;
+import model.database.ConnectionFactory;
 import model.domain.*;
 public class CarrinhoModel {
 	Item i;
@@ -22,4 +27,5 @@ public class CarrinhoModel {
 	public void limparCarrinho() {
 		dao.limpaCarrinho();
 	}
+	
 }
