@@ -83,6 +83,7 @@ public class ItemDAO {
 		
 		return items;
 	}
+	
 	public void adicionarProduto(Item item) {
 		PreparedStatement ps;
 		
@@ -100,7 +101,6 @@ public class ItemDAO {
 			
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
-		
+		}	
 	}
 }

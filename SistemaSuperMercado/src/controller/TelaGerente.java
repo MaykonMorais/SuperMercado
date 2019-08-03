@@ -1,10 +1,14 @@
 package controller;
 
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -13,8 +17,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import model.domain.Item;
 import model.domain.Tipo;
 import model.principal.GereciamentoProdutosModel;
+import model.principal.TipoModel;
 
-public class TelaGerente {
+public class TelaGerente implements Initializable {
 
     @FXML
     private TextField marcaProduto;
@@ -47,11 +52,12 @@ public class TelaGerente {
     private TableColumn<Item, Double> valorProduto;
     
     ObservableList<Item> listaItems;
-
+    Tipo tipo = new Tipo();
+    
     @FXML
     void adicionarProduto(ActionEvent event) {
     	GereciamentoProdutosModel model = new GereciamentoProdutosModel();
-    	model.adicionar(marca.getText(), , qtd, tipo);
+    	model.adicionar(marca.getText(), Double.parseDouble(precoProduto.getText()), Integer.parseInt(qtdProduto.getText()), listaTipos.getSelectionModel().getSelectedItem());
     }
 
     @FXML
@@ -81,5 +87,13 @@ public class TelaGerente {
     void removerProduto(ActionEvent event) {
 
     }
+
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		TipoModel tipos = new TipoModel();
+		ObservableList<Tipo> tiposChoiceBox = FXCollections.observableArrayList(tipos.procuraTipo());
+		
+		listaTipos.setItems(tiposChoiceBox);
+	}
 
 }

@@ -5,6 +5,9 @@ public class Tipo {
 	private String nomeTipo;
 	private String formaVenda;
 	
+	
+	public Tipo() {}
+	
 	public Tipo(int codigoTipo,String nomeTipo,String UnidadeMedida) {
 		setIdTipo(codigoTipo);
 		setNomeTipo(nomeTipo);
@@ -28,5 +31,10 @@ public class Tipo {
 	}
 	public void setFormaVenda(String formaVenda) {
 		this.formaVenda = formaVenda;
+	}
+	
+	@Override
+	public String toString() {
+		return getNomeTipo();
 	}
 }
