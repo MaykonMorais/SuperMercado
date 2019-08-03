@@ -73,7 +73,7 @@ public class TelaDeProdutos {
 
     	ObservableList<Item> x  =  i.itemProcura(nome);
     	ObservableList<Item> p = x;
-    	carro.adicionar(x, C, quantidade);
+    	carro.adicionar(p, C, quantidade);
     			//FXCollections.observableArrayList(i.itemProcura(nomeProduto.getText()));
     	
     	valTot += x.get(0).getPrecoItem();

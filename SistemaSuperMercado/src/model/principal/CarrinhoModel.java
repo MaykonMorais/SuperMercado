@@ -8,11 +8,13 @@ import model.domain.Item;
 import model.dao.CarrinhoDAO;
 import model.domain.*;
 public class CarrinhoModel {
+	Item i;
 	CarrinhoDAO dao = new CarrinhoDAO();
 	public void adicionar(ObservableList<Item> item, Carrinho carrinho,int quantidade) {
-		carrinho.setItems(item.get(0));
+	
+		i = new Item(item.get(0).getIdItem(),item.get(0).getMarcaItem(),item.get(0).getQtdEstoque(),item.get(0).getPrecoItem());
 		carrinho.setQtdItem(quantidade);
-		CarrinhoDAO dao = new CarrinhoDAO();
+		carrinho.setItems(i);
 		dao.carrinhoAdiciona(carrinho,item.get(0).getIdItem());
 	}
 	public void remover(int idItem) {

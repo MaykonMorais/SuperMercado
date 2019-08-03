@@ -7,25 +7,7 @@ public class Item {
     private double precoItem;
     private Tipo tipo;
     
-
-    public Item() {}
-    
-	public Item(String marcaItem, int qtdEstoque, double precoItem, int tipo) {
-		this.marcaItem = marcaItem;
-		this.qtdEstoque = qtdEstoque;
-		this.precoItem = precoItem;
-	}
-
-	public Tipo getTipo() {
-		return tipo;
-	}
-
-	public void setTipo(Tipo tipo) {
-		this.tipo = tipo;
-	}
-
-
-    public Item(int idItem,String marcaItem,int qtdEstoque,double precoItem) {
+	    public Item(int idItem,String marcaItem,int qtdEstoque,double precoItem) {
     	setIdItem(idItem);
     	setMarcaItem(marcaItem);
     	setQtdEstoque(qtdEstoque);

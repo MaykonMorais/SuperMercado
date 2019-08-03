@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import javafx.collections.ObservableList;
 
 public class Carrinho {	
-	ArrayList<Item> items;
-
+	ArrayList<Item> items = new ArrayList<>();
+	
 	protected int qtdItem;
 	
 	
