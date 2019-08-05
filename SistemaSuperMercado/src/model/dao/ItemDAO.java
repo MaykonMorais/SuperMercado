@@ -3,6 +3,7 @@ package model.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +14,7 @@ import model.database.ConnectionFactory;
 import model.domain.Item;
 
 public class ItemDAO {
-	private Connection con;
+	private static Connection con;
 	
 	public ItemDAO() {
 		this.con = ConnectionFactory.getConnection();
@@ -103,4 +104,27 @@ public class ItemDAO {
 			e.printStackTrace();
 		}	
 	}
+	
+	public boolean removeItem(int codigoItem) {
+		PreparedStatement ps;
+		
+		String sql = "delete from item where idItem = ?";
+		try {
+				ps = con.prepareStatement(sql);
+				
+				ps.setInt(1, codigoItem);
+				
+				if(ps.executeUpdate() > 0) {
+					return true;
+				}
+				else {
+					return false;
+				}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
 }

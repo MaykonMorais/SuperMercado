@@ -47,9 +47,9 @@
             <Button layoutX="58.0" layoutY="269.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="88.0" text="Cancelar" />
          </children>
       </AnchorPane>
-      <Button layoutX="90.0" layoutY="490.0" mnemonicParsing="false" onAction="#editarProduto" prefHeight="35.0" prefWidth="96.0" text="Editar" />
-      <Button layoutX="300.0" layoutY="490.0" mnemonicParsing="false" onAction="#removerProduto" prefHeight="35.0" prefWidth="96.0" text="Remover" />
-      <TextField fx:id="procuraItem" layoutX="23.0" layoutY="35.0" prefHeight="26.0" prefWidth="350.0" promptText="Marca ou Item" />
+      <Button layoutX="219.0" layoutY="491.0" mnemonicParsing="false" onAction="#editarProduto" opacity="0.86" prefHeight="35.0" prefWidth="96.0" style="-fx-background-color: #106b21;" text="Editar" textAlignment="CENTER" />
+      <Button layoutX="337.0" layoutY="491.0" mnemonicParsing="false" onAction="#removerProduto" prefHeight="35.0" prefWidth="96.0" style="-fx-background-color: #dd3439;" text="Remover" />
+      <TextField fx:id="nomeProduto" layoutX="23.0" layoutY="35.0" prefHeight="26.0" prefWidth="350.0" promptText="Marca ou Item" />
       <Button layoutX="396.0" layoutY="35.0" mnemonicParsing="false" onAction="#procurarProduto" text="Procurar" />
       <Button layoutX="495.0" layoutY="35.0" mnemonicParsing="false" onAction="#listarTodos" text="Listar Todos" />
       <TableView fx:id="carrinho" layoutX="23.0" layoutY="68.0" prefHeight="416.0" prefWidth="453.0">
@@ -60,5 +60,6 @@
             <TableColumn fx:id="estoque" prefWidth="93.0" text="Estoque" />
         </columns>
       </TableView>
+      <TextField fx:id="pesquisaInterna" layoutX="23.0" layoutY="495.0" prefHeight="26.0" prefWidth="159.0" promptText="Código do Produto" />
    </children>
 </Pane>

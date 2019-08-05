@@ -9,11 +9,14 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import model.dao.ItemDAO;
 import model.domain.Item;
 import model.domain.Tipo;
 import model.principal.GereciamentoProdutosModel;
@@ -23,7 +26,13 @@ public class TelaGerente implements Initializable {
 
     @FXML
     private TextField marcaProduto;
-
+    
+    @FXML 
+    private TextField pesquisaInterna;
+    
+    @FXML
+    private TextField nomeProduto; // procura item
+    
     @FXML
     private TextField precoProduto;
 
@@ -53,7 +62,8 @@ public class TelaGerente implements Initializable {
     
     ObservableList<Item> listaItems;
     Tipo tipo = new Tipo();
-    
+    GereciamentoProdutosModel produtos = new GereciamentoProdutosModel();
+   
     @FXML
     void adicionarProduto(ActionEvent event) {
     	GereciamentoProdutosModel model = new GereciamentoProdutosModel();
@@ -69,7 +79,7 @@ public class TelaGerente implements Initializable {
 
     @FXML
     void listarTodos(ActionEvent event) {
-    	GereciamentoProdutosModel produtos = new GereciamentoProdutosModel();
+    	
     	listaItems = FXCollections.observableArrayList(produtos.listarItems());
     	
     	idProduto.setCellValueFactory(new PropertyValueFactory<>("idItem"));
@@ -79,17 +89,43 @@ public class TelaGerente implements Initializable {
 		
 		carrinho.getItems().clear();
 		carrinho.getItems().addAll(listaItems);
-		
     }
 
     @FXML
     void procurarProduto(ActionEvent event) {
+    	listaItems = FXCollections.observableArrayList(produtos.procuraItem(nomeProduto.getText()));
     	
+    	idProduto.setCellValueFactory(new PropertyValueFactory<>("idItem"));
+		marca.setCellValueFactory(new PropertyValueFactory<>("marcaItem"));
+		valorProduto.setCellValueFactory(new PropertyValueFactory<>("precoItem"));
+		estoque.setCellValueFactory(new PropertyValueFactory<>("qtdEstoque"));;
+		
+    	carrinho.getItems().clear();
+    	carrinho.getItems().addAll(listaItems);
     }
 
     @FXML
     void removerProduto(ActionEvent event) {
-    	
+    	Alert alert;
+    	if(produtos.removerItem(Integer.parseInt(pesquisaInterna.getText()))) {
+    		alert = new Alert(AlertType.INFORMATION);
+    		alert.setTitle("Remoção de produtos");
+    		alert.setHeaderText(null);
+    		alert.setContentText("Produto removido com sucesso");
+    		alert.show();
+    		
+    	}
+    	else {
+    		alert = new Alert(AlertType.ERROR);
+    		alert.setTitle("ERRO");
+    		alert.setHeaderText(null);
+    		alert.setContentText("Produto não encontrado!");
+    		alert.show();
+    		
+    		carrinho.getItems().clear();
+        	carrinho.getItems().addAll(listaItems);
+    		
+    	}
     }
 
 	@Override
@@ -99,5 +135,4 @@ public class TelaGerente implements Initializable {
 		
 		listaTipos.setItems(tiposChoiceBox);
 	}
-
 }

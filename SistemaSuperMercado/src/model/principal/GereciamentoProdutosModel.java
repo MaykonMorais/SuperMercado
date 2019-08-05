@@ -10,6 +10,7 @@ import model.domain.Item;
 import model.domain.Tipo;
 
 public class GereciamentoProdutosModel {
+	ItemDAO items = new ItemDAO();
 	
 	//lista todos os produtos
 	public List<Item> listarItems() {
@@ -25,7 +26,7 @@ public class GereciamentoProdutosModel {
 			
 		}
 		else {
-			ItemDAO items = new ItemDAO();
+			
 			Item item = new Item();
 			item.setMarcaItem(marca);
 			item.setPrecoItem(preco);
@@ -34,5 +35,27 @@ public class GereciamentoProdutosModel {
 			
 			items.adicionarProduto(item);		
 		}
+	}
+	
+	public List<Item> procuraItem(String marca) {
+		if(marca.isEmpty()) {
+			JOptionPane.showMessageDialog(null, "Digite um campo válido");
+			return null;
+		}
+		else {
+			if(items.itemProcura(marca) !=  null) {
+				return (List) items.itemProcura(marca);
+			}
+			else {
+				JOptionPane.showConfirmDialog(null, "Item não encontrado");
+				return null;
+			}
+		}
+	}
+	
+	public boolean removerItem(int idItem) {
+		boolean pass = items.removeItem(idItem);
+		
+		return pass;
 	}
 }

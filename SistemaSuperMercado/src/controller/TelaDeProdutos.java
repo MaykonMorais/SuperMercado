@@ -1,6 +1,7 @@
 package controller;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Observable;
 import java.util.ResourceBundle;
 
@@ -20,15 +21,15 @@ import javafx.util.Callback;
 import model.dao.ItemDAO;
 import model.domain.Carrinho;
 import model.domain.Item;
+import model.principal.CarrinhoModel;
 import view.Principal;
 import model.dao.CarrinhoDAO;
 
+
 public class TelaDeProdutos {
+
     @FXML
     private TableView<Item> carrinho;
-    
-    @FXML
-    private TableColumn<Item, Integer> qtd;
     
     @FXML 
     private TableColumn<Item, Integer> idProduto;
@@ -38,27 +39,51 @@ public class TelaDeProdutos {
 
     @FXML
     private TableColumn<Item, Double> valorProduto;
-
+    
+    @FXML
+    private TableColumn<Item, Integer> Quantidade;
+    
+    @FXML
+    private TableColumn<Item, Double> Valor;
+    
     @FXML
     private TextField nomeProduto;
 
     @FXML
     private TextField valorTotal;
     
-    Double valTot = 0.0;
-    int indice = 0;
+    @FXML
+   private TextField quantidadeProduto;
     
     @FXML
+    private TextField idItem;
+    
+    Double valTot = 0.0;
+    int indice = 0;
+   
+    
+   private ItemDAO i;	
+   private Item item;
+   private Carrinho C = new Carrinho();
+   private CarrinhoModel carro = new CarrinhoModel();
+   
+   @FXML
     void adicionarProduto(ActionEvent event) {
+    	
     	valorTotal.setDisable(true);
+    	i = new ItemDAO();
     	
-    	ItemDAO i = new ItemDAO();
-    	
-    	ObservableList<Item> x  =  i.itemProcura(nomeProduto.getText());
+    	int quantidade = Integer.parseInt(quantidadeProduto.getText());
+    
+    	String nome=nomeProduto.getText();
+    	i.itemProcuraEstoque(nome);// consultar no estoque (atualizado)
+    	ObservableList<Item> x  = i.itemProcura(nome, quantidade); // agora esta passando o item com as informacoes exigidas pelo cliente
+    	//antes estava enviando as informacoes do banco de dados;
     	ObservableList<Item> p = x;
-    			
+    	carro.adicionar(p, C, quantidade);
+    			//FXCollections.observableArrayList(i.itemProcura(nomeProduto.getText()));
     	
-    	valTot += x.get(0).getPrecoItem();
+    	valTot += x.get(0).getValorTotal();
     	
     	if(!p.isEmpty()) {
     		valorTotal.setText(valTot.toString().format("%.2f", valTot));
@@ -66,7 +91,9 @@ public class TelaDeProdutos {
     		idProduto.setCellValueFactory(new PropertyValueFactory<>("idItem"));
     		marca.setCellValueFactory(new PropertyValueFactory<>("marcaItem"));
     		valorProduto.setCellValueFactory(new PropertyValueFactory<>("precoItem"));
-        	
+    		Quantidade.setCellValueFactory(new PropertyValueFactory<>("qtdEstoque"));
+    		Valor.setCellValueFactory(new PropertyValueFactory<>("valorTotal"));
+    		
         	carrinho.getItems().addAll(p);
         	
     	}
@@ -77,10 +104,25 @@ public class TelaDeProdutos {
     	Principal tela = new Principal();
     	tela.telaLogin();
     }
+
     
     @FXML
     void finalizarCompra(ActionEvent event) {
     	
     }
-}
 
+    @FXML
+    void cancelar(ActionEvent event) {
+    	carro.limparCarrinho();
+    }
+
+    @FXML
+    void cancelarItem(ActionEvent event) {
+    	ObservableList<Item> allItems,removeItem;
+    	allItems = carrinho.getItems();	
+    	removeItem = carrinho.getSelectionModel().getSelectedItems();
+    	removeItem.forEach(allItems::remove);
+    	carro.remover(Integer.parseInt(idItem.getText()));
+    }
+
+}
