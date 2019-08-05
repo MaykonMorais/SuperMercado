@@ -62,7 +62,7 @@ public class TelaDeProdutos {
     int indice = 0;
     
    private ItemDAO i;	
-   
+   private Item item;
    private Carrinho C = new Carrinho();
    private CarrinhoModel carro = new CarrinhoModel();
    @FXML
@@ -73,7 +73,7 @@ public class TelaDeProdutos {
     	i = new ItemDAO();
     	
     	int quantidade = Integer.parseInt(quantidadeProduto.getText());
-    	C.setQtdItem(quantidade);
+    
     	String nome=nomeProduto.getText();
     	i.itemProcuraEstoque(nome);// consultar no estoque (atualizado)
     	ObservableList<Item> x  = i.itemProcura(nome, quantidade); // agora esta passando o item com as informacoes exigidas pelo cliente
@@ -82,7 +82,7 @@ public class TelaDeProdutos {
     	carro.adicionar(p, C, quantidade);
     			//FXCollections.observableArrayList(i.itemProcura(nomeProduto.getText()));
     	
-    	valTot += x.get(0).getPrecoItem();
+    	valTot += x.get(0).getValorTotal();
     	
     	if(!p.isEmpty()) {
     		valorTotal.setText(valTot.toString().format("%.2f", valTot));
@@ -91,7 +91,7 @@ public class TelaDeProdutos {
     		marca.setCellValueFactory(new PropertyValueFactory<>("marcaItem"));
     		valorProduto.setCellValueFactory(new PropertyValueFactory<>("precoItem"));
     		Quantidade.setCellValueFactory(new PropertyValueFactory<>("qtdEstoque"));
-    	//	Valor.setCellValueFactory(new PropertyValueFactory<>("ValorFinal"));
+    		Valor.setCellValueFactory(new PropertyValueFactory<>("valorTotal"));
     		
         	carrinho.getItems().addAll(p);
         	
@@ -117,6 +117,10 @@ public class TelaDeProdutos {
 
     @FXML
     void cancelarItem(ActionEvent event) {
+    	ObservableList<Item> allItems,removeItem;
+    	allItems = carrinho.getItems();	
+    	removeItem = carrinho.getSelectionModel().getSelectedItems();
+    	removeItem.forEach(allItems::remove);
     	carro.remover(Integer.parseInt(idItem.getText()));
     }
 

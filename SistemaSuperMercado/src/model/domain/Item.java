@@ -5,13 +5,24 @@ public class Item {
     private String marcaItem;
     private int qtdEstoque;
     private double precoItem;
-    private Tipo tipo;
+    private double valorTotal; // temporario ate saber como passar um method
+	private Tipo tipo;
+
     
-	    public Item(int idItem,String marcaItem,int qtdEstoque,double precoItem) {
+    public double getValorTotal() {
+		return valorTotal;
+	}
+    
+	public void setValorTotal(int qtdEstoque,double precoItem) {
+		this.valorTotal = qtdEstoque * precoItem;
+	}
+
+	public Item(int idItem,String marcaItem,int qtdEstoque,double precoItem) {
     	setIdItem(idItem);
     	setMarcaItem(marcaItem);
     	setQtdEstoque(qtdEstoque);
     	setPrecoItem(precoItem);
+    	setValorTotal(getQtdEstoque(),getPrecoItem());
     }
     
 
@@ -47,5 +58,6 @@ public class Item {
 	public void setQtdEstoque(int qtdEstoque) {
 		this.qtdEstoque = qtdEstoque;
 	}
+
 
 }

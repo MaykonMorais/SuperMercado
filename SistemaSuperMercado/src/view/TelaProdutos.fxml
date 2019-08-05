@@ -18,8 +18,8 @@
       </AnchorPane>
       <TableView fx:id="carrinho" layoutX="35.0" layoutY="111.0" prefHeight="377.0" prefWidth="564.0">
         <columns>
-          <TableColumn fx:id="idProduto" prefWidth="98.0" text="idProduto" />
-            <TableColumn fx:id="marca" prefWidth="140.0" text="Marca" />
+          <TableColumn fx:id="idProduto" prefWidth="113.0" text="idProduto" />
+            <TableColumn fx:id="marca" prefWidth="125.0" text="Marca" />
             <TableColumn fx:id="valorProduto" prefWidth="119.0" text="Valor Unitario" />
             <TableColumn fx:id="Quantidade" minWidth="0.0" prefWidth="108.0" text="Quantidade" />
             <TableColumn fx:id="Valor" prefWidth="98.0" text="Valor Final" />
@@ -52,7 +52,7 @@
          </font>
       </Text>
       <TextField fx:id="quantidadeProduto" layoutX="479.0" layoutY="70.0" promptText="Quantidade" />
-      <Button layoutX="36.0" layoutY="497.0" mnemonicParsing="false" onAction="#cancelarItem" text="Cancelar Item" />
-      <TextField fx:id="idItem" layoutX="164.0" layoutY="497.0" prefHeight="26.0" prefWidth="85.0" promptText="idProduto" />
+      <Button layoutX="164.0" layoutY="497.0" mnemonicParsing="false" onAction="#cancelarItem" text="Cancelar Item" />
+      <TextField fx:id="idItem" layoutX="35.0" layoutY="497.0" prefHeight="26.0" prefWidth="109.0" promptText="idProduto" />
    </children>
 </Pane>

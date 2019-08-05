@@ -14,7 +14,7 @@ import model.domain.Item;
 
 public class ItemDAO {
 	private Connection con;
-	
+	Item item = null;
 	public ItemDAO() {
 		this.con = ConnectionFactory.getConnection();
 	}
@@ -30,7 +30,7 @@ public class ItemDAO {
 			rs = ps.executeQuery();
 			
 			while(rs.next()) {
-				Item item = new Item(rs.getInt(1),rs.getString(2),rs.getInt(3),rs.getDouble(4));
+				 item = new Item(rs.getInt(1),rs.getString(2),rs.getInt(3),rs.getDouble(4));
 				//item.setIdItem(rs.getInt(1));
 				//item.setMarcaItem(rs.getString(2));
 				//item.setPrecoItem(rs.getDouble(4));
@@ -87,7 +87,7 @@ public class ItemDAO {
 
 	public ObservableList<Item> itemProcura(String marcaItem,int quantidade) {
 		Connection con = ConnectionFactory.getConnection();
-		Item item = null;
+		
 		
 		ObservableList<Item> items = FXCollections.observableArrayList();
 
@@ -140,5 +140,8 @@ public class ItemDAO {
 			e.printStackTrace();
 		}
 		
+	}
+	public int quantidade() {
+		return item.getQtdEstoque();
 	}
 }
