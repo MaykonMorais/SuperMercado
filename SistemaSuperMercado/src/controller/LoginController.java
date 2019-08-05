@@ -1,7 +1,5 @@
 package controller;
-import model.dao.GerenteDAO;
-import model.domain.Funcionario;
-import model.domain.Gerente;
+
 import model.principal.LoginModelFuncionario;
 import model.principal.LoginModelGerente;
 import view.Principal;

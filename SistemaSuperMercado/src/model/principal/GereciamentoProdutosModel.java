@@ -1,6 +1,5 @@
 package model.principal;
 
-
 import java.util.List;
 
 import javax.swing.JOptionPane;
@@ -21,7 +20,7 @@ public class GereciamentoProdutosModel {
 	
 	//adiciona produtos ao banco
 	public void adicionar(String marca, Double preco, int qtd, Tipo tipo) {
-		if(marca == null || preco < 0.0 || qtd < 0 || tipo == null) {
+		if(marca.isEmpty() || (preco.isNaN() || preco < 0) || qtd < 0 || tipo == null) {
 			JOptionPane.showMessageDialog(null, "Por favor, informe os dados corretamente!");
 			
 		}

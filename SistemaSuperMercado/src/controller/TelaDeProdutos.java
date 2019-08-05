@@ -56,7 +56,7 @@ public class TelaDeProdutos {
     	
     	ObservableList<Item> x  =  i.itemProcura(nomeProduto.getText());
     	ObservableList<Item> p = x;
-    			//FXCollections.observableArrayList(i.itemProcura(nomeProduto.getText()));
+    			
     	
     	valTot += x.get(0).getPrecoItem();
     	

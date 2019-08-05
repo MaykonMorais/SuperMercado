@@ -87,7 +87,7 @@ public class ItemDAO {
 	public void adicionarProduto(Item item) {
 		PreparedStatement ps;
 		
-		String sql = "insert into item values (?, ?, ?, ?)";
+		String sql = "insert into item (marca, qtdEstoque, preco, idTipo) values (?, ?, ?, ?)";
 		try {
 				ps = con.prepareStatement(sql);
 				

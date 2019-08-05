@@ -57,7 +57,9 @@ public class TelaGerente implements Initializable {
     @FXML
     void adicionarProduto(ActionEvent event) {
     	GereciamentoProdutosModel model = new GereciamentoProdutosModel();
-    	model.adicionar(marca.getText(), Double.parseDouble(precoProduto.getText()), Integer.parseInt(qtdProduto.getText()), listaTipos.getSelectionModel().getSelectedItem());
+    	model.adicionar(marcaProduto.getText(), Double.parseDouble(precoProduto.getText()), Integer.parseInt(qtdProduto.getText()), listaTipos.getSelectionModel().getSelectedItem());
+    	
+    	carrinho.refresh();
     }
 
     @FXML
@@ -74,8 +76,10 @@ public class TelaGerente implements Initializable {
 		marca.setCellValueFactory(new PropertyValueFactory<>("marcaItem"));
 		valorProduto.setCellValueFactory(new PropertyValueFactory<>("precoItem"));
 		estoque.setCellValueFactory(new PropertyValueFactory<>("qtdEstoque"));;
+		
+		carrinho.getItems().clear();
 		carrinho.getItems().addAll(listaItems);
-    	
+		
     }
 
     @FXML
@@ -85,7 +89,7 @@ public class TelaGerente implements Initializable {
 
     @FXML
     void removerProduto(ActionEvent event) {
-
+    	
     }
 
 	@Override
