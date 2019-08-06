@@ -7,9 +7,16 @@ public class Item {
     private double precoItem;
     private double valorTotal; // temporario ate saber como passar um method
 	private Tipo tipo;
-
     
-    public double getValorTotal() {
+    public Tipo getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(Tipo tipo) {
+		this.tipo = tipo;
+	}
+
+	public double getValorTotal() {
 		return valorTotal;
 	}
     
@@ -24,7 +31,17 @@ public class Item {
     	setPrecoItem(precoItem);
     	setValorTotal(getQtdEstoque(),getPrecoItem());
     }
-    
+	
+	public Item(int idItem,String marcaItem,int qtdEstoque,double precoItem,int idTipo,String nomeTipo,String formavenda) {
+    	setIdItem(idItem);
+    	setMarcaItem(marcaItem);
+    	setQtdEstoque(qtdEstoque);
+    	setPrecoItem(precoItem);
+    	setValorTotal(getQtdEstoque(),getPrecoItem());
+    	tipo = new Tipo(idTipo,nomeTipo,formavenda);
+    	setTipo(tipo);
+    }
+	
 
 	public int getIdItem() {
         return idItem;

@@ -108,7 +108,7 @@ public class TelaDeProdutos {
     
     @FXML
     void finalizarCompra(ActionEvent event) {
-    	historico.adicionaHistorico();
+    	historico.adicionaHistorico(C,carro);
     }
 
     @FXML

@@ -87,29 +87,22 @@ public class ItemDAO {
 
 	public ObservableList<Item> itemProcura(String marcaItem,int quantidade) {
 		Connection con = ConnectionFactory.getConnection();
-		
-		
 		ObservableList<Item> items = FXCollections.observableArrayList();
 
-		String sql = "select * from item where marca like'%"+marcaItem+"%'or idItem = "+Integer.parseInt(marcaItem);
+		String sql = "select * from item inner join tipo on tipo.idTipo = item.idTipo ;";
 		
 		try {
-			
-			PreparedStatement ps = con.prepareStatement(sql);
-			ResultSet rs = ps.executeQuery();
-			
+			PreparedStatement ps;
+			ResultSet	 rs ;	
+				ps = con.prepareStatement(sql);
+				rs = ps.executeQuery();
+				
 			
 			while(rs.next()) {
-					if(rs.getString(2).equals(marcaItem) || rs.getInt(1) ==Integer.parseInt(marcaItem)){ 
-						item = new Item(rs.getInt(1),rs.getString(2),quantidade,rs.getDouble(4));
-					
-					//item.setIdItem(rs.getInt(1));
-					//item.setMarcaItem(rs.getString(2));
-					//item.setPrecoItem(rs.getDouble(4));
-					//item.setQtdEstoque(rs.getInt(3));
-					items.add(item);
+					if(rs.getInt(1) ==Integer.parseInt(marcaItem) ) {
+						item = new Item(rs.getInt(1),rs.getString(2),quantidade,rs.getDouble(4),rs.getInt(5),rs.getString(7),rs.getString(8));
+						items.add(item);
 					}
-				
 			}
 			rs.close();
 			ps.close();
@@ -144,4 +137,15 @@ public class ItemDAO {
 	public int quantidade() {
 		return item.getQtdEstoque();
 	}
+	 public  boolean verificaNumero(String texto) {
+	        if(texto == null) {
+	            return false;
+	        }
+	        for (char letra : texto.toCharArray()) {
+	            if(letra < '0' || letra > '9') {
+	                return false;
+	                }
+	        }
+	        return true;
+	    }
 }

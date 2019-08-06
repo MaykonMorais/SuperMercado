@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -82,10 +83,6 @@ public class CarrinhoDAO {
 					if(rs.getString(2).equals(marcaItem) || rs.getInt(1) ==Integer.parseInt(marcaItem)){ 
 						item = new Item(rs.getInt(1),rs.getString(2),rs.getInt(3),rs.getDouble(4));
 					
-					//item.setIdItem(rs.getInt(1));
-					//item.setMarcaItem(rs.getString(2));
-					//item.setPrecoItem(rs.getDouble(4));
-					//item.setQtdEstoque(rs.getInt(3));
 					items.add(item);
 					}
 				
@@ -99,5 +96,21 @@ public class CarrinhoDAO {
 		
 		return items;
 	}
+	public ArrayList<Integer> todosItems(){
+		Connection connect = ConnectionFactory.getConnection();
+		String sql="select idItem from carrinho";
+		ArrayList<Integer> numeros = new ArrayList<>();
+		try {
+			PreparedStatement ps = connect.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				numeros.add(rs.getInt(1));
+			}
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
 
+		return numeros;
+	}
 }

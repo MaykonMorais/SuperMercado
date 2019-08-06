@@ -3,6 +3,7 @@ package model.principal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
 
 import javafx.collections.FXCollections;
@@ -22,10 +23,13 @@ public class CarrinhoModel {
 		dao.carrinhoAdiciona(carrinho,item.get(0).getIdItem());
 	}
 	public void remover(int idItem) {
-		dao.carrinhoRemove(idItem);
+		CarrinhoDAO.carrinhoRemove(idItem);
 	}
 	public void limparCarrinho() {
 		dao.limpaCarrinho();
+	}
+	public ArrayList<Integer> ids() {
+		return dao.todosItems();
 	}
 	
 }
