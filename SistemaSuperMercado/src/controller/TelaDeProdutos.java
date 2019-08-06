@@ -22,6 +22,7 @@ import model.dao.ItemDAO;
 import model.domain.Carrinho;
 import model.domain.Item;
 import model.principal.CarrinhoModel;
+import model.principal.HistoricoModel;
 import view.Principal;
 import model.dao.CarrinhoDAO;
 
@@ -65,6 +66,7 @@ public class TelaDeProdutos {
    private Item item;
    private Carrinho C = new Carrinho();
    private CarrinhoModel carro = new CarrinhoModel();
+   private HistoricoModel historico = new HistoricoModel();
    @FXML
     void adicionarProduto(ActionEvent event) {
     	
@@ -75,9 +77,8 @@ public class TelaDeProdutos {
     	int quantidade = Integer.parseInt(quantidadeProduto.getText());
     
     	String nome=nomeProduto.getText();
-    	i.itemProcuraEstoque(nome);// consultar no estoque (atualizado)
-    	ObservableList<Item> x  = i.itemProcura(nome, quantidade); // agora esta passando o item com as informacoes exigidas pelo cliente
-    	//antes estava enviando as informacoes do banco de dados;
+    	
+    	ObservableList<Item> x  = i.itemProcura(nome, quantidade); 
     	ObservableList<Item> p = x;
     	carro.adicionar(p, C, quantidade);
     			//FXCollections.observableArrayList(i.itemProcura(nomeProduto.getText()));
@@ -107,7 +108,7 @@ public class TelaDeProdutos {
     
     @FXML
     void finalizarCompra(ActionEvent event) {
-    	
+    	historico.adicionaHistorico();
     }
 
     @FXML

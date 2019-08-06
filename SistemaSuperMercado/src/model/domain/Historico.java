@@ -3,25 +3,51 @@ package model.domain;
 import java.util.Date;
 
 public class Historico {
-    private int idCompra;
-    private int idCaixa;
-    private int qtdPorItem;
+    private String codigoVenda;
+    private int idItem;
     private Date dataCompra;
+    private Item item;
+    
+    public Item getItem() {
+		return item;
+	}
 
-    public int getIdCompra(){
-        return idCompra;
+	public void setItem(Item item) {
+		this.item = item;
+	}
+
+	public Historico(String codigoVenda,int idItem,Date dataCompra,String marcaItem,int qtdEstoque,double preco,int idTipo,String nomeTipo,String formavenda) {
+    	setCodigoVenda(codigoVenda);
+    	setIdItem(idItem);
+    	setDataCompra(dataCompra);
+    	item = new Item(idItem,marcaItem,qtdEstoque,preco,idTipo,nomeTipo,formavenda);// setando o item
+    	setItem(item);
     }
-    public void setIdCompra(int id){
-        this.idCompra = id;
-    }
-	public int getIdCaixa() {
-		return idCaixa;
+    
+	public Historico(String codigoVenda,int idItem,Date dataCompra) {
+		setCodigoVenda(codigoVenda);
+		setIdItem(idItem);
+		setDataCompra(dataCompra);
 	}
 	
-	public void setIdCaixa(int idCaixa) {
-		this.idCaixa = idCaixa;
+    public int getIdItem() {
+		return idItem;
+	}
+
+	public void setIdItem(int idItem) {
+		this.idItem = idItem;
 	}
 	
+    public String getCodigoVenda() {
+		return codigoVenda;
+	}
+
+	public void setCodigoVenda(String codigoVenda) {
+		this.codigoVenda = codigoVenda;
+	}
+	private int qtdPorItem;
+    
+
 	public int getQtdPorItem() {
 		return qtdPorItem;
 	}
