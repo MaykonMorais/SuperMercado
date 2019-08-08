@@ -77,7 +77,7 @@ public class TelaDeProdutos {
     
     	String nome=nomeProduto.getText();
     	i.itemProcuraEstoque(nome);// consultar no estoque (atualizado)
-    	ObservableList<Item> x  = i.itemProcura(nome, quantidade); // agora esta passando o item com as informacoes exigidas pelo cliente
+    	ObservableList<Item> x  = i.itemProcura(); // agora esta passando o item com as informacoes exigidas pelo cliente
     	//antes estava enviando as informacoes do banco de dados;
     	ObservableList<Item> p = x;
     	carro.adicionar(p, C, quantidade);

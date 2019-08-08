@@ -21,30 +21,28 @@
               <MenuItem mnemonicParsing="false" text="Close" />
             </items>
           </Menu>
-          <Menu mnemonicParsing="false" text="Edit">
+          <Menu mnemonicParsing="false" text="Historico">
             <items>
-              <MenuItem mnemonicParsing="false" text="Delete" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <items>
-              <MenuItem mnemonicParsing="false" text="About" />
+              <MenuItem mnemonicParsing="false" text="Consultar Historico" />
             </items>
           </Menu>
         </menus>
       </MenuBar>
       <AnchorPane layoutX="486.0" layoutY="68.0" prefHeight="355.0" prefWidth="332.0" style="-fx-border-color: #2ee;">
          <children>
-            <TextField fx:id="marcaProduto" alignment="CENTER" layoutX="102.0" layoutY="46.0" promptText="Marca do Produto" />
-            <Text layoutX="46.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Marca" wrappingWidth="55.64111328125" />
-            <Text layoutX="32.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Preco R$" />
-            <TextField fx:id="precoProduto" layoutX="102.0" layoutY="98.0" promptText="0.0" />
-            <Text layoutX="34.0" layoutY="171.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Estoque" />
-            <TextField fx:id="qtdProduto" layoutX="102.0" layoutY="145.0" promptText="Quantidade" />
-            <ChoiceBox fx:id="listaTipos" layoutX="113.0" layoutY="199.0" prefWidth="150.0" />
-            <Text layoutX="46.0" layoutY="217.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tipo" />
-            <Button layoutX="206.0" layoutY="269.0" mnemonicParsing="false" onAction="#adicionarProduto" prefHeight="35.0" prefWidth="88.0" text="Adicionar" />
+            <TextField fx:id="marcaProduto" alignment="CENTER" layoutX="102.0" layoutY="79.0" promptText="Marca do Produto" />
+            <Text layoutX="33.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Marca" wrappingWidth="55.64111328125" />
+            <Text layoutX="29.0" layoutY="139.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Preco R$" />
+            <TextField fx:id="precoProduto" layoutX="102.0" layoutY="121.0" promptText="0.0" />
+            <Text layoutX="32.0" layoutY="181.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Estoque" />
+            <TextField fx:id="qtdProduto" layoutX="102.0" layoutY="165.0" promptText="Quantidade" />
+            <ChoiceBox fx:id="listaTipos" layoutX="113.0" layoutY="219.0" prefWidth="150.0" />
+            <Text layoutX="47.0" layoutY="237.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tipo" />
+            <Button fx:id="btnAdicionar" layoutX="206.0" layoutY="269.0" mnemonicParsing="false" onAction="#adicionarProduto" prefHeight="35.0" prefWidth="88.0" text="Adicionar" />
             <Button layoutX="58.0" layoutY="269.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="88.0" text="Cancelar" />
+            <Button fx:id="confirmar" layoutX="131.0" layoutY="313.0" mnemonicParsing="false" onAction="#editConfirma" prefHeight="35.0" prefWidth="88.0" text="Confirmar" />
+            <TextField fx:id="codigoProduto" alignment="CENTER" layoutX="103.0" layoutY="30.0" promptText="Marca do Produto" />
+            <Text layoutX="10.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID do Produto" wrappingWidth="96.0" />
          </children>
       </AnchorPane>
       <Button layoutX="219.0" layoutY="491.0" mnemonicParsing="false" onAction="#editarProduto" opacity="0.86" prefHeight="35.0" prefWidth="96.0" style="-fx-background-color: #106b21;" text="Editar" textAlignment="CENTER" />

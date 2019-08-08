@@ -85,6 +85,32 @@ public class ItemDAO {
 		return items;
 	}
 	
+	public Item procuraItemId(Item item) {
+		Connection con = ConnectionFactory.getConnection();
+		
+		String sql = "select * from item where idItem = " + item.getIdItem();
+		
+		try {
+			
+			PreparedStatement ps = con.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+					
+			while(rs.next()) {
+				
+				item.setIdItem(rs.getInt(1));
+				item.setMarcaItem(rs.getString(2));
+				item.setPrecoItem(rs.getDouble(4));
+				item.setQtdEstoque(rs.getInt(3));
+			}
+			ps.close();
+			rs.close();
+		} catch (Exception e) {
+			e.printStackTrace();;
+		}
+		
+		return item;
+	}
+	
 	public void adicionarProduto(Item item) {
 		PreparedStatement ps;
 		
@@ -105,14 +131,14 @@ public class ItemDAO {
 		}	
 	}
 	
-	public boolean removeItem(int codigoItem) {
+	public boolean removeItem(Item item) {
 		PreparedStatement ps;
 		
 		String sql = "delete from item where idItem = ?";
 		try {
 				ps = con.prepareStatement(sql);
 				
-				ps.setInt(1, codigoItem);
+				ps.setInt(1, item.getIdItem());
 				
 				if(ps.executeUpdate() > 0) {
 					return true;
@@ -121,9 +147,30 @@ public class ItemDAO {
 					return false;
 				}
 			
-		} catch (Exception e) {
+		} catch (SQLException  e) {
 			e.printStackTrace();
 			return false;
+		}
+	}
+	public void atualizarItem(Item item) {
+		PreparedStatement ps;
+		
+		String sql = "update item set marca = ?, qtdestoque = ?, preco = ?, idTipo = ? where idItem = ?";
+		try {
+				ps = con.prepareStatement(sql);
+				
+				ps.setString(1, item.getMarcaItem());
+				ps.setInt(2, item.getQtdEstoque());
+				ps.setDouble(3, item.getPrecoItem());
+				ps.setInt(4, item.getTipo().getIdTipo());
+				
+				ps.setInt(5, item.getIdItem());
+				
+				ps.execute();
+				ps.close();
+				
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 	

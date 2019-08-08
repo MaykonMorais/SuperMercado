@@ -11,6 +11,7 @@ import model.domain.Tipo;
 
 public class GereciamentoProdutosModel {
 	ItemDAO items = new ItemDAO();
+	Item item;
 	
 	//lista todos os produtos
 	public List<Item> listarItems() {
@@ -19,21 +20,12 @@ public class GereciamentoProdutosModel {
 		return items.consultaTotal();
 	}
 	
-	//adiciona produtos ao banco
-	public void adicionar(String marca, Double preco, int qtd, Tipo tipo) {
-		if(marca.isEmpty() || (preco.isNaN() || preco < 0) || qtd < 0 || tipo == null) {
-			JOptionPane.showMessageDialog(null, "Por favor, informe os dados corretamente!");
+	public void adicionar(Item item) {
+		try {
+			items.adicionarProduto(item);
 			
-		}
-		else {
-			
-			Item item = new Item();
-			item.setMarcaItem(marca);
-			item.setPrecoItem(preco);
-			item.setQtdEstoque(qtd);
-			item.setTipo(tipo);
-			
-			items.adicionarProduto(item);		
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 	
@@ -53,9 +45,19 @@ public class GereciamentoProdutosModel {
 		}
 	}
 	
-	public boolean removerItem(int idItem) {
-		boolean pass = items.removeItem(idItem);
+	public boolean removerItem (Item item) throws Exception {
+		
+		boolean pass = items.removeItem(item);
 		
 		return pass;
+	}
+	
+	public Item procuraItem(Item item) throws NullPointerException { // revisar parte
+		return items.procuraItemId(item);
+		
+	}
+	
+	public void atualiza(Item item) {
+		items.atualizarItem(item);
 	}
 }

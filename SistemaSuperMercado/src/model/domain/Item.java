@@ -9,12 +9,27 @@ public class Item {
     
     public Item() {}
     
-	public Item(String marcaItem, int qtdEstoque, double precoItem, int tipo) {
+    public Item(int idItem) {
+    	setIdItem(idItem);
+    }
+    
+	public Item(String marcaItem, int qtdEstoque, double precoItem, Tipo tipo) {
 		this.marcaItem = marcaItem;
 		this.qtdEstoque = qtdEstoque;
 		this.precoItem = precoItem;
+		setTipo(tipo);
+		
 	}
-
+	
+	public Item(int idItem,String marcaItem, int qtdEstoque, double precoItem, Tipo tipo) {
+		
+		setIdItem(idItem);
+		setMarcaItem(marcaItem);
+		setQtdEstoque(qtdEstoque);
+		setPrecoItem(precoItem);
+		setTipo(tipo);
+	}
+	
 	public Tipo getTipo() {
 		return tipo;
 	}
