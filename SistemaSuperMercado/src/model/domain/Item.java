@@ -5,21 +5,36 @@ public class Item {
     private String marcaItem;
     private int qtdEstoque;
     private double precoItem;
+    private double valorTotal; // temporario ate saber como passar um method
+
     private Tipo tipo;
     
     public Item() {}
     
-    public Item(int idItem) {
+    public Item(int idItem,String marcaItem,int qtdEstoque,double precoItem) {
     	setIdItem(idItem);
+    	setMarcaItem(marcaItem);
+    	setQtdEstoque(qtdEstoque);
+    	setPrecoItem(precoItem);
+    	setValorTotal(getQtdEstoque(),getPrecoItem());
     }
-    
-	public Item(String marcaItem, int qtdEstoque, double precoItem, Tipo tipo) {
+    public Item(String marcaItem, int qtdEstoque, double precoItem, Tipo tipo) {
 		this.marcaItem = marcaItem;
 		this.qtdEstoque = qtdEstoque;
 		this.precoItem = precoItem;
 		setTipo(tipo);
 		
 	}
+	
+	public Item(int idItem,String marcaItem,int qtdEstoque,double precoItem,int idTipo,String nomeTipo,String formavenda) {
+    	setIdItem(idItem);
+    	setMarcaItem(marcaItem);
+    	setQtdEstoque(qtdEstoque);
+    	setPrecoItem(precoItem);
+    	setValorTotal(getQtdEstoque(),getPrecoItem());
+    	tipo = new Tipo(idTipo,nomeTipo,formavenda);
+    	setTipo(tipo);
+    }
 	
 	public Item(int idItem,String marcaItem, int qtdEstoque, double precoItem, Tipo tipo) {
 		
@@ -30,6 +45,23 @@ public class Item {
 		setTipo(tipo);
 	}
 	
+	public Item(String marcaItem,int qtdEstoque) {
+		setMarcaItem(marcaItem);
+		setQtdEstoque(qtdEstoque);
+	}
+    
+	public double getValorTotal() {
+		return valorTotal;
+	}
+    
+	public void setValorTotal(int qtdEstoque,double precoItem) {
+		this.valorTotal = qtdEstoque * precoItem;
+	}
+    
+    public Item(int idItem) {
+    	setIdItem(idItem);
+    }
+
 	public Tipo getTipo() {
 		return tipo;
 	}

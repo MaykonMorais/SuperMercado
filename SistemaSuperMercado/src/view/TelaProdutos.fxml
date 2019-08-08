@@ -18,9 +18,11 @@
       </AnchorPane>
       <TableView fx:id="carrinho" layoutX="35.0" layoutY="111.0" prefHeight="377.0" prefWidth="564.0">
         <columns>
-          <TableColumn fx:id="idProduto" prefWidth="103.0" text="idProduto" />
-            <TableColumn fx:id="marca" prefWidth="135.0" text="Marca" />
-            <TableColumn fx:id="valorProduto" prefWidth="155.0" text="Valor Unitario" />
+          <TableColumn fx:id="idProduto" prefWidth="113.0" text="idProduto" />
+            <TableColumn fx:id="marca" prefWidth="125.0" text="Marca" />
+            <TableColumn fx:id="valorProduto" prefWidth="119.0" text="Valor Unitario" />
+            <TableColumn fx:id="Quantidade" minWidth="0.0" prefWidth="108.0" text="Quantidade" />
+            <TableColumn fx:id="Valor" prefWidth="98.0" text="Valor Final" />
         </columns>
       </TableView>
       <AnchorPane layoutX="607.0" layoutY="111.0" prefHeight="275.0" prefWidth="215.0" style="-fx-border-style: solid;">
@@ -30,24 +32,27 @@
                   <Font size="21.0" />
                </font>
             </Text>
-            <TextField fx:id="valorTotal" alignment="CENTER" layoutX="142.0" layoutY="47.0" prefHeight="26.0" prefWidth="64.0" promptText="0.0" />
+            <TextField fx:id="valorTotal" alignment="CENTER" layoutX="142.0" layoutY="47.0" prefHeight="26.0" prefWidth="64.0" promptText="0.00" />
             <Text layoutX="105.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="R$" wrappingWidth="32.7294921875" />
-            <Text fontSmoothingType="LCD" layoutX="14.0" layoutY="108.0" strokeType="OUTSIDE" strokeWidth="0.0" text="IdCompra" wrappingWidth="141.0">
+            <Text fontSmoothingType="LCD" layoutX="17.0" layoutY="112.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CodigoCompra" wrappingWidth="176.0000000000001">
                <font>
                   <Font size="21.0" />
                </font>
             </Text>
-            <TextField fx:id="IdCompra" layoutX="17.0" layoutY="125.0" prefHeight="26.0" prefWidth="176.0" promptText="012931-3" />
+            <TextField fx:id="IdCompra" layoutX="17.0" layoutY="125.0" prefHeight="26.0" prefWidth="176.0" promptText="12345678-9" />
          </children>
       </AnchorPane>
-      <Button layoutX="607.0" layoutY="416.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="100.0" style="-fx-background-color: #de3335;" text="Cancelar " />
-      <Button layoutX="715.0" layoutY="416.0" mnemonicParsing="false" onAction="#finalizarCompra" prefHeight="43.0" prefWidth="100.0" style="-fx-background-color: #64ad6a;" text="Finalizar" />
+      <Button layoutX="607.0" layoutY="395.0" mnemonicParsing="false" onAction="#cancelar" prefHeight="43.0" prefWidth="100.0" style="-fx-background-color: #de3335;" text="Cancelar " />
+      <Button layoutX="715.0" layoutY="395.0" mnemonicParsing="false" onAction="#finalizarCompra" prefHeight="43.0" prefWidth="100.0" style="-fx-background-color: #64ad6a;" text="Finalizar" />
       <TextField fx:id="nomeProduto" layoutX="37.0" layoutY="70.0" prefHeight="26.0" prefWidth="429.0" promptText="Nome Do Produto" />
-      <Button layoutX="487.0" layoutY="70.0" mnemonicParsing="false" onAction="#adicionarProduto" style="-fx-background-color: #1db9ff;" text="Adiconar" />
+      <Button layoutX="657.0" layoutY="70.0" mnemonicParsing="false" onAction="#adicionarProduto" style="-fx-background-color: #1db9ff;" text="Adiconar" />
       <Text layoutX="35.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Produto" wrappingWidth="128.7294921875">
          <font>
             <Font size="18.0" />
          </font>
       </Text>
+      <TextField fx:id="quantidadeProduto" layoutX="479.0" layoutY="70.0" promptText="Quantidade" />
+      <Button layoutX="164.0" layoutY="497.0" mnemonicParsing="false" onAction="#cancelarItem" text="Cancelar Item" />
+      <TextField fx:id="idItem" layoutX="35.0" layoutY="497.0" prefHeight="26.0" prefWidth="109.0" promptText="idProduto" />
    </children>
 </Pane>

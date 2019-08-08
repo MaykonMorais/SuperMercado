@@ -170,6 +170,12 @@ public class TelaGerente implements Initializable {
     	try {
     		Item item = new Item(Integer.parseInt(codigoProduto.getText()),marcaProduto.getText(), Integer.parseInt(qtdProduto.getText()),Double.parseDouble(precoProduto.getText()), listaTipos.getSelectionModel().getSelectedItem());
     		produtos.atualiza(item);
+
+    		alert = new Alert(AlertType.INFORMATION);
+    		alert.setTitle("Sucesso");
+    		alert.setHeaderText(null);
+    		alert.setContentText("Produto Editado com sucesso.");
+    		alert.show();
     		
     	} catch(Exception e) {
     		alert = new Alert(AlertType.INFORMATION);
@@ -178,6 +184,7 @@ public class TelaGerente implements Initializable {
     		alert.setContentText("Por favor, insira o código corretamente");
     		alert.show();
     	}
+    	btnAdicionar.setDisable(false);
     }
 
 	@Override

@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.swing.JOptionPane;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.dao.ItemDAO;
 import model.domain.Item;
@@ -11,7 +12,6 @@ import model.domain.Tipo;
 
 public class GereciamentoProdutosModel {
 	ItemDAO items = new ItemDAO();
-	Item item;
 	
 	//lista todos os produtos
 	public List<Item> listarItems() {
@@ -59,5 +59,11 @@ public class GereciamentoProdutosModel {
 	
 	public void atualiza(Item item) {
 		items.atualizarItem(item);
+	}
+	
+	public ObservableList<Item> procura(Item item){
+		ObservableList<Item> i = FXCollections.observableArrayList();
+		i.add(items.itemProcura(item));
+		return i; 
 	}
 }
