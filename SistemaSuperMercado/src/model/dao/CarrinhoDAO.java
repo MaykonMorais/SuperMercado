@@ -20,7 +20,7 @@ public class CarrinhoDAO {
 
 		Connection connect = ConnectionFactory.getConnection();
 		String sql = "insert into Carrinho values(?,?);";
-		
+		if(item.getIdItem() != 0) {
 		try {
 			PreparedStatement prepara = connect.prepareStatement(sql);
 			
@@ -33,6 +33,7 @@ public class CarrinhoDAO {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}
 		}
 	}
 	
@@ -110,4 +111,5 @@ public class CarrinhoDAO {
 
 		return numeros;
 	}
+
 }

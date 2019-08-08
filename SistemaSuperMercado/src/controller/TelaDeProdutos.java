@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Observable;
 import java.util.ResourceBundle;
 
+import javax.swing.JOptionPane;
+
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableArray;
@@ -71,7 +73,7 @@ public class TelaDeProdutos implements Initializable{
    
    @FXML
     void adicionarProduto(ActionEvent event) {
-    	
+    	try {
     	valorTotal.setDisable(true);
     		
     	int quantidade = Integer.parseInt(quantidadeProduto.getText());
@@ -97,7 +99,10 @@ public class TelaDeProdutos implements Initializable{
     		Valor.setCellValueFactory(new PropertyValueFactory<>("valorTotal"));
     		
         	carrinho.getItems().addAll(p);
+    	}
         	
+    	}catch(Exception e) {
+    		JOptionPane.showMessageDialog(null, "Porfavor insira uma quantidade valida");
     	}
     }
 
