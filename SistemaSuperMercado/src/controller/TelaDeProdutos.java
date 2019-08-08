@@ -21,14 +21,12 @@ import javafx.util.Callback;
 import model.dao.ItemDAO;
 import model.domain.Carrinho;
 import model.domain.Item;
-import model.principal.CarrinhoModel;
-import model.principal.HistoricoModel;
 import view.Principal;
 import model.dao.CarrinhoDAO;
+import model.principal.*;
 
-
-public class TelaDeProdutos {
-
+public class TelaDeProdutos implements Initializable{
+	
     @FXML
     private TableView<Item> carrinho;
     
@@ -59,28 +57,32 @@ public class TelaDeProdutos {
     @FXML
     private TextField idItem;
     
-    Double valTot = 0.0;
-    int indice = 0;
+    @FXML
+    private TextField IdCompra;
     
-   private ItemDAO i;	
-   private Item item;
+    
+    Double valTot = 0.00;
+    int indice = 0;
+   private GereciamentoProdutosModel g = new GereciamentoProdutosModel(); 
+   
    private Carrinho C = new Carrinho();
    private CarrinhoModel carro = new CarrinhoModel();
    private HistoricoModel historico = new HistoricoModel();
+   
    @FXML
     void adicionarProduto(ActionEvent event) {
     	
     	valorTotal.setDisable(true);
     		
-    	i = new ItemDAO();
-    	
     	int quantidade = Integer.parseInt(quantidadeProduto.getText());
-    
     	String nome=nomeProduto.getText();
     	
-    	ObservableList<Item> x  = i.itemProcura(nome, quantidade); 
+    	Item I = new Item(nome,quantidade);
+   
+    	ObservableList<Item> x  = g.procura(I); 
     	ObservableList<Item> p = x;
-    	carro.adicionar(p, C, quantidade);
+    	
+    	carro.adicionar(I,C);
     			//FXCollections.observableArrayList(i.itemProcura(nomeProduto.getText()));
     	
     	valTot += x.get(0).getValorTotal();
@@ -108,22 +110,39 @@ public class TelaDeProdutos {
     
     @FXML
     void finalizarCompra(ActionEvent event) {
-    	historico.adicionaHistorico(C,carro);
+    	historico.adicionaHistorico(C,carro,IdCompra.getText());
+    	valTot = 0.00;
+    	valorTotal.clear();
+    	carrinho.getItems().clear();
+    	IdCompra.setText(historico.getCodigo());
     }
 
     @FXML
     void cancelar(ActionEvent event) {
     	carro.limparCarrinho();
+    	valTot = 0.00;
+    	valorTotal.clear();
+    	carrinho.getItems().clear();
     }
 
     @FXML
     void cancelarItem(ActionEvent event) {
+    	
     	ObservableList<Item> allItems,removeItem;
     	allItems = carrinho.getItems();	
     	removeItem = carrinho.getSelectionModel().getSelectedItems();
+    	valTot -= carrinho.getSelectionModel().getSelectedItems().get(0).getValorTotal();
+    	valorTotal.setText(valTot.toString().format("%.2f", valTot));
+    	carro.remover(carrinho.getSelectionModel().getSelectedItem());
     	removeItem.forEach(allItems::remove);
-    	carro.remover(Integer.parseInt(idItem.getText()));
+    	
     }
+
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		IdCompra.setDisable(true);
+		IdCompra.setText(historico.getCodigo());	
+	}
 
 }
 

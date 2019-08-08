@@ -15,7 +15,9 @@ public class Historico {
 	public void setItem(Item item) {
 		this.item = item;
 	}
-
+	public Historico(String codigoVenda) {
+	setCodigoVenda(codigoVenda);
+	}
 	public Historico(String codigoVenda,int idItem,Date dataCompra,String marcaItem,int qtdEstoque,double preco,int idTipo,String nomeTipo,String formavenda) {
     	setCodigoVenda(codigoVenda);
     	setIdItem(idItem);

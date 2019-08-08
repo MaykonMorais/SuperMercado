@@ -10,7 +10,7 @@ import model.domain.Historico;
 import model.domain.Item;
 
 public class HistoricoModel {
-	HistoricoDAO historico;	
+	HistoricoDAO historico =  new HistoricoDAO();	
 	public ObservableList<Historico> exibeHistorico() {
 			ObservableList<Historico> historico = FXCollections.observableArrayList();
 			return historico;
@@ -19,14 +19,15 @@ public class HistoricoModel {
 			ObservableList<Historico> historico = FXCollections.observableArrayList();
 			return historico;
 		}
-		public void adicionaHistorico(Carrinho carrinho,CarrinhoModel model) {
-			historico = new HistoricoDAO();
-			String str=historico.geradorAleatorioManipulado();
+		public void adicionaHistorico(Carrinho carrinho,CarrinhoModel model,String codigo) {
+		
+			Historico hist = new Historico(codigo);
+			historico.adicionar(carrinho,hist);
 			
-			for(int i=0;i<model.ids().size();++i) {
-				historico.adicionar(str,carrinho.getItems().get(i).getIdItem());
-				
-			}
 			model.limparCarrinho();
+		}
+		public String getCodigo() {
+		
+			return historico.geradorAleatorioManipulado();
 		}
 }

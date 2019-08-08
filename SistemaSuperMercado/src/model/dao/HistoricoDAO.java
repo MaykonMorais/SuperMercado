@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.database.ConnectionFactory;
-
+import model.domain.Carrinho;
 import model.domain.Historico;
 
 public class HistoricoDAO {
@@ -67,23 +67,28 @@ public class HistoricoDAO {
 		
 		return historicos;
 	}
-	public void adicionar(String codigo,int id) {
+	public void adicionar(Carrinho carrinho,Historico historico) {
 		Connection con = ConnectionFactory.getConnection();
-		String sql = "insert into historicovendas values(?,?)";
-		
+		int i=0;
+		String sql = "insert into historicovendas values(?,?,?)";
+		while(i<carrinho.getItems().size()) {
+	
 		PreparedStatement ps;
 		try {
 			ps = con.prepareStatement(sql);
-			ps.setString(1,codigo);
-			ps.setInt(2, id);
+			ps.setString(1,historico.getCodigoVenda());
+			ps.setInt(2, carrinho.getItems().get(i).getIdItem());
+			ps.setInt(3, carrinho.getItems().get(i).getQtdEstoque());
 			// falta a data
 			ps.execute();
 			ps.close();
 			
-		}catch(SQLException e){
-			e.printStackTrace();
+			}catch(SQLException e){
+				e.printStackTrace();
+			}
+		++i;
 		}
-		
+		carrinho.getItems().clear();
 	}
 	
 	public String geradorAleatorioManipulado() {

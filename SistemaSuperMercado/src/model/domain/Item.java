@@ -31,6 +31,10 @@ public class Item {
     	setPrecoItem(precoItem);
     	setValorTotal(getQtdEstoque(),getPrecoItem());
     }
+	public Item(String marcaItem,int qtdEstoque) {
+		setMarcaItem(marcaItem);
+		setQtdEstoque(qtdEstoque);
+	}
 	
 	public Item(int idItem,String marcaItem,int qtdEstoque,double precoItem,int idTipo,String nomeTipo,String formavenda) {
     	setIdItem(idItem);

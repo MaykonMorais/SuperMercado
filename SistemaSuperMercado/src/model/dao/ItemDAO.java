@@ -11,31 +11,31 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.database.ConnectionFactory;
 import model.domain.Item;
+import model.domain.Tipo;
 
 public class ItemDAO {
 	private Connection con;
-	Item item = null;
 	public ItemDAO() {
 		this.con = ConnectionFactory.getConnection();
 	}
 	
-	public List<Item> consultaTotal() {
+	Tipo tipo;
+	public List<Item> consultaTotal(Item item) {
 		PreparedStatement ps;
 		ResultSet rs;
 		
 		List<Item> items = new ArrayList<Item>();
 		
 		try {
-			ps = con.prepareStatement("select * from item");
+			ps = con.prepareStatement("select * from item inner join tipo on tipo.idTipo = item.idTipo ");
 			rs = ps.executeQuery();
 			
 			while(rs.next()) {
-				 item = new Item(rs.getInt(1),rs.getString(2),rs.getInt(3),rs.getDouble(4));
-				//item.setIdItem(rs.getInt(1));
-				//item.setMarcaItem(rs.getString(2));
-				//item.setPrecoItem(rs.getDouble(4));
-				//item.setQtdEstoque(rs.getInt(3));
-				
+				item.setIdItem(rs.getInt(1));
+				item.setMarcaItem(rs.getString(2));
+				item.setPrecoItem(rs.getDouble(4));
+				item.setValorTotal(item.getQtdEstoque(), item.getPrecoItem());
+				tipo = new Tipo(rs.getInt(5),rs.getString(7),rs.getString(8));
 				items.add(item);
 				
 			}
@@ -48,13 +48,12 @@ public class ItemDAO {
 		return items;
 	}
 	
-	public ObservableList<Item> itemProcuraEstoque(String marcaItem) {
+	public ObservableList<Item> itemProcuraEstoque(Item item) {
 		Connection con = ConnectionFactory.getConnection();
-		Item item = null;
 		
 		ObservableList<Item> items = FXCollections.observableArrayList();
 
-		String sql = "select * from item where marca like'%"+marcaItem+"%'or idItem = "+Integer.parseInt(marcaItem);
+		String sql = "select * from item where marca like'%"+item.getMarcaItem()+"%'or idItem = "+item.getIdItem();
 		
 		try {
 			
@@ -63,20 +62,14 @@ public class ItemDAO {
 			
 			
 			while(rs.next()) {
-					if(rs.getString(2).equals(marcaItem) || rs.getInt(1) ==Integer.parseInt(marcaItem)){ 
-						item = new Item(rs.getInt(1),rs.getString(2),rs.getInt(3),rs.getDouble(4));
-					
-					//item.setIdItem(rs.getInt(1));
-					//item.setMarcaItem(rs.getString(2));
-					//item.setPrecoItem(rs.getDouble(4));
-					//item.setQtdEstoque(rs.getInt(3));
+					if(rs.getString(2).equals(item.getMarcaItem()) || rs.getInt(1) ==item.getIdItem()){ 
+					item = new Item(rs.getInt(1),rs.getString(2),rs.getInt(3),rs.getDouble(4));
+
 					items.add(item);
 					}
-				
 			}
 			rs.close();
 			ps.close();
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -85,24 +78,24 @@ public class ItemDAO {
 	}
 	
 
-	public ObservableList<Item> itemProcura(String marcaItem,int quantidade) {
+	public Item itemProcura(Item item) {
 		Connection con = ConnectionFactory.getConnection();
-		ObservableList<Item> items = FXCollections.observableArrayList();
+		String sql = "select * from item inner join tipo on tipo.idTipo = item.idTipo where marca = (?) ;";
 
-		String sql = "select * from item inner join tipo on tipo.idTipo = item.idTipo ;";
-		
 		try {
 			PreparedStatement ps;
 			ResultSet	 rs ;	
 				ps = con.prepareStatement(sql);
+				ps.setString(1, item.getMarcaItem());
+				//ps.setInt(2,Integer.parseInt(item.getMarcaItem()));
 				rs = ps.executeQuery();
-				
-			
 			while(rs.next()) {
-					if(rs.getInt(1) ==Integer.parseInt(marcaItem) ) {
-						item = new Item(rs.getInt(1),rs.getString(2),quantidade,rs.getDouble(4),rs.getInt(5),rs.getString(7),rs.getString(8));
-						items.add(item);
-					}
+				item.setIdItem(rs.getInt(1));
+				item.setMarcaItem(rs.getString(2));
+				item.setPrecoItem(rs.getDouble(4));
+				item.setValorTotal(item.getQtdEstoque(), item.getPrecoItem());
+				tipo = new Tipo(rs.getInt(5),rs.getString(7),rs.getString(8));
+				item.setTipo(tipo);
 			}
 			rs.close();
 			ps.close();
@@ -111,41 +104,6 @@ public class ItemDAO {
 			e.printStackTrace();
 		}
 		
-		return items;
+		return item;
 	}
-
-	public void adicionarProduto(Item item) {
-		PreparedStatement ps;
-		
-		String sql = "insert into item values (?, ?, ?, ?)";
-		try {
-				ps = con.prepareStatement(sql);
-				
-				ps.setString(1, item.getMarcaItem());
-				ps.setInt(2, item.getQtdEstoque());
-				ps.setDouble(3, item.getPrecoItem());
-				//ps.setInt(4, item.getTipo().getIdTipo());
-				
-				ps.execute();
-				ps.close();
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-	}
-	public int quantidade() {
-		return item.getQtdEstoque();
-	}
-	 public  boolean verificaNumero(String texto) {
-	        if(texto == null) {
-	            return false;
-	        }
-	        for (char letra : texto.toCharArray()) {
-	            if(letra < '0' || letra > '9') {
-	                return false;
-	                }
-	        }
-	        return true;
-	    }
 }
