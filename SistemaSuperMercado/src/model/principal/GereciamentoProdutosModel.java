@@ -12,6 +12,7 @@ import model.domain.Tipo;
 
 public class GereciamentoProdutosModel {
 	ItemDAO items = new ItemDAO();
+	Item item;
 	
 	//lista todos os produtos
 	public List<Item> listarItems() {
@@ -20,16 +21,16 @@ public class GereciamentoProdutosModel {
 		return items.consultaTotal();
 	}
 	
-	public void adicionar(Item item) {
-		try {
+	public void adicionar(Item item) throws Exception {
+		if(item.getMarcaItem().isEmpty() || item.getPrecoItem() < 0 || item.getQtdEstoque() < 0) {
+			 throw new Exception();
+		}
+		else {
 			items.adicionarProduto(item);
-			
-		} catch (Exception e) {
-			e.printStackTrace();
 		}
 	}
 	
-	public List<Item> procuraItem(String marca) {
+	public List<Item> procuraItem(String marca) { // ajeitar
 		if(marca.isEmpty()) {
 			JOptionPane.showMessageDialog(null, "Digite um campo válido");
 			return null;
@@ -45,16 +46,23 @@ public class GereciamentoProdutosModel {
 		}
 	}
 	
-	public boolean removerItem (Item item) throws Exception {
-		
-		boolean pass = items.removeItem(item);
-		
-		return pass;
+	public void removerItem (Item item) throws Exception {
+		if(items.removeItem(item) != 0) {
+			JOptionPane.showMessageDialog(null, "Produto removido com sucesso");
+		}
+		else {
+			throw new Exception();
+		}
 	}
 	
-	public Item procuraItem(Item item) throws NullPointerException { // revisar parte
-		return items.procuraItemId(item);
-		
+	public Item procuraItem(Item i) throws NullPointerException { // revisar parte
+		item =  items.procuraItemId(i);
+		if(item.getPrecoItem() != 0) { // 
+			return item;
+		}
+		else {
+			throw new NullPointerException();
+		}
 	}
 	
 	public void atualiza(Item item) {
