@@ -53,8 +53,8 @@ public class TelaDeProdutos implements Initializable{
     private TextField IdCompra;
     
     
-    Double valTot = 0.00;
-    int indice = 0;
+   Double valTot = 0.00;
+   int indice = 0;
    private GereciamentoProdutosModel g = new GereciamentoProdutosModel(); 
    
    private Carrinho C = new Carrinho();

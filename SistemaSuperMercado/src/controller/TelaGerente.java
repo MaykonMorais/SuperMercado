@@ -81,6 +81,12 @@ public class TelaGerente implements Initializable {
     	  	GereciamentoProdutosModel model = new GereciamentoProdutosModel();
        		model.adicionar(item);
        		
+       		Alert alert = new Alert(AlertType.INFORMATION);
+    		alert.setTitle("Adicionando Produtos");
+    		alert.setHeaderText(null);
+    		alert.setContentText("Produto adicionado com sucesso!");
+    		alert.show();
+       		
     	} catch (Exception e) {
     		//e.printStackTrace();
     		Alert alert = new Alert(AlertType.INFORMATION);
@@ -89,7 +95,7 @@ public class TelaGerente implements Initializable {
     		alert.setContentText("Por favor, insira os dados corretamente");
     		alert.show();
     	}  
-    	
+    	resetCampos();
     	carrinho.refresh();
     }
 
@@ -150,12 +156,6 @@ public class TelaGerente implements Initializable {
     		Item i = new Item(Integer.parseInt(pesquisaInterna.getText()));
     		produtos.removerItem(i); // transferindo objeto para camada model
     		
-    		alert = new Alert(AlertType.INFORMATION);
-    		alert.setTitle("Remoção de produtos");
-    		alert.setHeaderText(null);
-    		alert.setContentText("Produto removido com sucesso");
-    		alert.show();
-    		
     	} catch(Exception e) {
     		alert = new Alert(AlertType.ERROR);
     		alert.setTitle("ERRO");
@@ -165,17 +165,19 @@ public class TelaGerente implements Initializable {
     	} 
     }
     
+    
     @FXML
     void editConfirma(ActionEvent event) {
     	try {
     		Item item = new Item(Integer.parseInt(codigoProduto.getText()),marcaProduto.getText(), Integer.parseInt(qtdProduto.getText()),Double.parseDouble(precoProduto.getText()), listaTipos.getSelectionModel().getSelectedItem());
     		produtos.atualiza(item);
-
+    		
     		alert = new Alert(AlertType.INFORMATION);
     		alert.setTitle("Sucesso");
     		alert.setHeaderText(null);
     		alert.setContentText("Produto Editado com sucesso.");
     		alert.show();
+    		resetCampos();
     		
     	} catch(Exception e) {
     		alert = new Alert(AlertType.INFORMATION);
@@ -185,6 +187,7 @@ public class TelaGerente implements Initializable {
     		alert.show();
     	}
     	btnAdicionar.setDisable(false);
+    	confirmar.setDisable(true);
     }
 
 	@Override
@@ -195,5 +198,12 @@ public class TelaGerente implements Initializable {
 		listaTipos.setItems(tiposChoiceBox);
 		codigoProduto.setDisable(true);
 		confirmar.setDisable(true);
+	}
+	
+	public void resetCampos() {
+		codigoProduto.clear();
+		marcaProduto.clear();
+		precoProduto.clear();
+		qtdProduto.clear();	
 	}
 }

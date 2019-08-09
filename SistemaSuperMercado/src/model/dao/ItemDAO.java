@@ -8,6 +8,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.database.ConnectionFactory;
@@ -133,7 +135,8 @@ public class ItemDAO {
 		}	
 	}
 	
-	public boolean removeItem(Item item) {
+	public int removeItem(Item item) {
+		int linhasAfetadas = 0;
 		PreparedStatement ps;
 		
 		String sql = "delete from item where idItem = ?";
@@ -142,17 +145,14 @@ public class ItemDAO {
 				
 				ps.setInt(1, item.getIdItem());
 				
-				if(ps.executeUpdate() > 0) {
-					return true;
-				}
-				else {
-					return false;
-				}
-			
+				linhasAfetadas = ps.executeUpdate();
+		
+								
 		} catch (SQLException  e) {
 			e.printStackTrace();
-			return false;
+			
 		}
+		return linhasAfetadas;
 	}
 	public void atualizarItem(Item item) {
 		PreparedStatement ps;
