@@ -8,6 +8,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.database.ConnectionFactory;
@@ -216,16 +218,20 @@ public class ItemDAO {
 				//ps.setInt(2,Integer.parseInt(item.getMarcaItem()));
 				rs = ps.executeQuery();
 			while(rs.next()) {
-				item.setIdItem(rs.getInt(1));
-				item.setMarcaItem(rs.getString(2));
-				item.setPrecoItem(rs.getDouble(4));
-				item.setValorTotal(item.getQtdEstoque(), item.getPrecoItem());
-				tipo = new Tipo(rs.getInt(5),rs.getString(7),rs.getString(8));
-				item.setTipo(tipo);
+				if(rs.getInt(3)>=item.getQtdEstoque()) {
+					item.setIdItem(rs.getInt(1));
+					item.setMarcaItem(rs.getString(2));
+					item.setPrecoItem(rs.getDouble(4));
+					item.setValorTotal(item.getQtdEstoque(), item.getPrecoItem());
+					tipo = new Tipo(rs.getInt(5),rs.getString(7),rs.getString(8));
+					item.setTipo(tipo);
+				}else {
+				JOptionPane.showMessageDialog(null, "Quantidade exigida maior do que o estoque");
+				item = null ;
 			}
 			rs.close();
 			ps.close();
-			
+		}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
