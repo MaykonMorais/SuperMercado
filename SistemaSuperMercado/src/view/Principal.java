@@ -78,4 +78,18 @@ public class Principal extends Application {
 	public static void main(String args[]) {
 		launch();
 	}
+	
+	public void telaPagamento() {
+		try {
+			Parent tela = FXMLLoader.load(getClass().getResource("telaPagamento.fxml"));
+			
+			Scene scene = new  Scene(tela);
+			
+			stage.setScene(scene);
+			stage.show();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }

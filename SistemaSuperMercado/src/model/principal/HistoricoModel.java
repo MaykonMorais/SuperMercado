@@ -27,6 +27,15 @@ public class HistoricoModel {
 		
 		Historico hist = new Historico(codigo);
 		historico.adicionar(carrinho,hist);
+		}
+		public void adicionaHistorico(Carrinho carrinho,CarrinhoModel model,String codigo) {
+			
+			Historico hist = new Historico(codigo);
+			historico.adicionar(carrinho,hist);
+			historico.subtrai(carrinho);
+			model.limparCarrinho();
+		}
+		public String getCodigo() {
 		
 		model.limparCarrinho();
 	}

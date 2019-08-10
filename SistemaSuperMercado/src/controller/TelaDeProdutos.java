@@ -3,6 +3,7 @@ package controller;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javax.swing.JOptionPane;
 
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -63,9 +64,9 @@ public class TelaDeProdutos implements Initializable{
    
    @FXML
     void adicionarProduto(ActionEvent event) {
-    	
+    	try {
     	valorTotal.setDisable(true);
-    		
+    	
     	int quantidade = Integer.parseInt(quantidadeProduto.getText());
     	String nome=nomeProduto.getText();
     	
@@ -91,6 +92,9 @@ public class TelaDeProdutos implements Initializable{
         	carrinho.getItems().addAll(p);
         	
     	}
+    	}catch(Exception e) {
+    		JOptionPane.showMessageDialog(null, "Porfavor insira uma quantidade valida");
+    	}
     }
 
     @FXML
@@ -102,11 +106,13 @@ public class TelaDeProdutos implements Initializable{
     
     @FXML
     void finalizarCompra(ActionEvent event) {
-    	historico.adicionaHistorico(C,carro,IdCompra.getText());
-    	valTot = 0.00;
-    	valorTotal.clear();
-    	carrinho.getItems().clear();
-    	IdCompra.setText(historico.getCodigo());
+    	Principal tela = new Principal();
+    	tela.telaPagamento();
+    	//historico.adicionaHistorico(C,carro,IdCompra.getText());
+    	//valTot = 0.00;
+    	//valorTotal.clear();
+    	//carrinho.getItems().clear();
+    	//IdCompra.setText(historico.getCodigo());
     }
 
     @FXML
@@ -114,6 +120,7 @@ public class TelaDeProdutos implements Initializable{
     	carro.limparCarrinho();
     	valTot = 0.00;
     	valorTotal.clear();
+    	C.getItems().clear();
     	carrinho.getItems().clear();
     }
 

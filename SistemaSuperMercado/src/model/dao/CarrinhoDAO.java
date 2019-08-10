@@ -20,12 +20,12 @@ public class CarrinhoDAO {
 
 		Connection connect = ConnectionFactory.getConnection();
 		String sql = "insert into Carrinho values(?,?);";
-		
+		if(item.getIdItem() != 0) {
 		try {
 			PreparedStatement prepara = connect.prepareStatement(sql);
 			
 			prepara.setInt(1, item.getIdItem());
-			prepara.setInt(2, carrinho.getQtdItem());
+			prepara.setInt(2, item.getQtdEstoque());
 			
 			prepara.execute();
 			prepara.close();
@@ -33,6 +33,7 @@ public class CarrinhoDAO {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}
 		}
 	}
 	
