@@ -20,10 +20,10 @@ public class HistoricoModel {
 			return historico;
 		}
 		public void adicionaHistorico(Carrinho carrinho,CarrinhoModel model,String codigo) {
-		
+			
 			Historico hist = new Historico(codigo);
 			historico.adicionar(carrinho,hist);
-			
+			historico.subtrai(carrinho);
 			model.limparCarrinho();
 		}
 		public String getCodigo() {

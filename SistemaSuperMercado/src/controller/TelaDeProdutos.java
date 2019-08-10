@@ -120,6 +120,7 @@ public class TelaDeProdutos implements Initializable{
     	carro.limparCarrinho();
     	valTot = 0.00;
     	valorTotal.clear();
+    	C.getItems().clear();
     	carrinho.getItems().clear();
     }
 

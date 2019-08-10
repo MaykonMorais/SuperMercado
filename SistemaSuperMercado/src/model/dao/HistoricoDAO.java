@@ -97,6 +97,36 @@ public class HistoricoDAO {
 			}
 		++i;
 		}
+	}
+	public void subtrai(Carrinho carrinho) {
+		Connection con = ConnectionFactory.getConnection();
+		String sql = "select * from Item where idItem = (?)";
+		
+		String sql1 = "update item set qtdEstoque = (?) where idItem = (?)";
+		int i=0;
+		while(i<carrinho.getItems().size()) {
+		
+			try {
+				PreparedStatement ps1 = con.prepareStatement(sql);
+				ps1.setInt(1, carrinho.getItems().get(i).getIdItem());
+				ResultSet rs1 = ps1.executeQuery();
+				PreparedStatement ps2 = con.prepareStatement(sql1);
+				while(rs1.next()) {
+				ps2.setInt(1,(rs1.getInt(3) - carrinho.getItems().get(i).getQtdEstoque()) );
+				ps2.setInt(2, carrinho.getItems().get(i).getIdItem());
+				
+				++i;
+				}
+
+				ps2.execute();
+				ps1.close();
+				rs1.close();
+				ps2.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		carrinho.getItems().clear();
 	}
 	

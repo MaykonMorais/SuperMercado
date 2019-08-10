@@ -210,11 +210,12 @@ public class ItemDAO {
 
 		try {
 			PreparedStatement ps;
-			ResultSet	 rs ;	
+			ResultSet rs ;	
 				ps = con.prepareStatement(sql);
 				ps.setString(1, item.getMarcaItem());
 				//ps.setInt(2,Integer.parseInt(item.getMarcaItem()));
 				rs = ps.executeQuery();
+				
 			while(rs.next()) {
 				if(rs.getInt(3)>=item.getQtdEstoque()) {
 					item.setIdItem(rs.getInt(1));
@@ -227,9 +228,9 @@ public class ItemDAO {
 				JOptionPane.showMessageDialog(null, "Quantidade exigida maior do que o estoque");
 				item = null ;
 			}
+		}
 			rs.close();
 			ps.close();
-		}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
