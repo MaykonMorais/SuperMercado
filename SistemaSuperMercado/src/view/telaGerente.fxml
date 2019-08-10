@@ -16,16 +16,21 @@
    <children>
       <MenuBar prefHeight="29.0" prefWidth="809.0">
         <menus>
-          <Menu mnemonicParsing="false" text="File">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Close" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Historico">
+            <Menu mnemonicParsing="false" onAction="#verHistorico" text="Gerenciamento">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#gerenciamentoProdutos" text="Gerenciamento de Produtos" />
+               </items>
+            </Menu>
+          <Menu mnemonicParsing="false" onAction="#verHistorico" text="Historico">
             <items>
               <MenuItem mnemonicParsing="false" text="Consultar Historico" />
             </items>
           </Menu>
+            <Menu mnemonicParsing="false" onAction="#verHistorico" text="Cadastrar">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#cadastrarFuncionario" text="Cadastrar Funcionario" />
+               </items>
+            </Menu>
         </menus>
       </MenuBar>
       <AnchorPane layoutX="486.0" layoutY="68.0" prefHeight="355.0" prefWidth="332.0" style="-fx-border-color: #2ee;">

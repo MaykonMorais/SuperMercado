@@ -7,14 +7,17 @@ import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.database.ConnectionFactory;
 import model.domain.Carrinho;
 import model.domain.Historico;
+import model.domain.Item;
 
 public class HistoricoDAO {
 	public ObservableList<Historico> consultaHistorico(String codigoVenda) {
@@ -32,7 +35,7 @@ public class HistoricoDAO {
 			
 			
 			while(rs.next()) {
-				historico = new Historico(rs.getString(1),rs.getInt(2),rs.getDate(3),rs.getString(5),rs.getInt(6),rs.getDouble(7),rs.getInt(8),rs.getString(10),rs.getString(11));
+				historico = new Historico(rs.getString(1),rs.getInt(2),rs.getString(3),rs.getString(5),rs.getInt(6),rs.getDouble(7),rs.getInt(8),rs.getString(10),rs.getString(11));
 				historicos.add(historico);
 			}
 			rs.close();
@@ -44,24 +47,27 @@ public class HistoricoDAO {
 		
 		return historicos;
 	}
-	public ObservableList<Historico> todosHistoricos(){
+	
+	public List<Historico> todosHistoricos(){
+		
 		Connection con = ConnectionFactory.getConnection();
-		ObservableList<Historico> historicos = FXCollections.observableArrayList();
+		List<Historico> historicos = new ArrayList<Historico>();
+		
 		Historico historico = null;
-		String sql = "select * from historivendas;";
+		String sql = "select * from historicovendas;";
 		String gambiarra = null;
+		
 		try {
 			
 			PreparedStatement ps = con.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
 			
-			
 			while(rs.next()) {
-				if(!gambiarra.equals(rs.getString(1))) { // evita que pegue o mesmo historico varias fezes
-					historico = new Historico(rs.getString(1),rs.getInt(2),rs.getDate(3));
+				//if(!gambiarra.equals(rs.getString(1))) { // evita que pegue o mesmo historico varias vezes
+					historico = new Historico(rs.getString(1),rs.getInt(2),rs.getString(3));
 					historicos.add(historico);
 					gambiarra = rs.getString(1);
-				}
+			//	}
 			}
 			rs.close();
 			ps.close();
@@ -74,11 +80,13 @@ public class HistoricoDAO {
 	}
 	public void adicionar(Carrinho carrinho,Historico historico) {
 		Connection con = ConnectionFactory.getConnection();
+		
 		int i=0;
 		Date date = Calendar.getInstance().getTime();
-		DateFormat formatodata = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
+		DateFormat formatodata = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 		String da = formatodata.format(date);
 		String sql = "insert into historicovendas values(?,?,?,?)";
+		
 		while(i<carrinho.getItems().size()) {
 	
 		PreparedStatement ps;
@@ -151,4 +159,31 @@ public class HistoricoDAO {
 	        }
 	        return senha.toString();
 	 } 
-}
+	 
+	 public List<Historico> procuraData(Historico historico) {
+		 	Connection con = ConnectionFactory.getConnection();
+		 	Item item;
+			List<Historico> historicos = new ArrayList<Historico>();
+
+			String sql = "select historicoVendas.numeroVenda, item.marca, historicoVendas.quantidade, (item.preco * historicoVendas.quantidade) as TotalVendido from historicoVendas inner join item using(idItem) where dataCompra like '" + historico.getDataCompra() + "%'";
+			
+			try {
+				PreparedStatement ps = con.prepareStatement(sql);
+				ResultSet rs = ps.executeQuery();
+				
+				while(rs.next()) {
+					historico = new Historico(rs.getString(1), rs.getInt(3), )
+					historicos.add(historico);
+					
+				}
+				rs.close();
+				ps.close();
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			return historicos;
+		}
+
+	 }

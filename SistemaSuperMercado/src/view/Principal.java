@@ -63,6 +63,17 @@ public class Principal extends Application {
 			e.printStackTrace();
 		}
 	}
+	public void telaHistorico() {
+		try {
+			Parent tela = FXMLLoader.load(getClass().getResource("telaHistorico.fxml"));
+			
+			Scene scene = new Scene(tela);
+			stage.setScene(scene);
+			stage.show();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
 	
 	public static void main(String args[]) {
 		launch();

@@ -5,6 +5,7 @@ import java.sql.*;
 import model.database.ConnectionFactory;
 
 public class LoginModelGerente {
+	
 public boolean verificaGerente(String usuario, String senha) {		
 		Connection con =  ConnectionFactory.getConnection(); 
 		String sql= "select funcionario.nomeFuncionario, Gerente.senhaGerente from gerente inner join Funcionario using(idFuncionario)";

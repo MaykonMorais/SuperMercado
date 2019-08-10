@@ -1,24 +1,45 @@
 package model.domain;
 
 import java.util.Date;
+import java.util.List;
 
 public class Historico {
     private String codigoVenda;
     private int idItem;
-    private Date dataCompra;
-    private Item item;
+    private String dataCompra;
+    private List<Item> itens;
     
-    public Item getItem() {
+    private Item item;
+    public Historico(String dataCompra) {
+    	setDataCompra(dataCompra);
+    }
+   
+    	
+	/*
+	public Historico1(String codigoVenda) {
+		setCodigoVenda(codigoVenda);
+	}
+	*/
+	
+	public List<Item> getItens() {
+		return itens;
+	}
+	public Item getItem() {
 		return item;
 	}
+
 
 	public void setItem(Item item) {
 		this.item = item;
 	}
-	public Historico(String codigoVenda) {
-	setCodigoVenda(codigoVenda);
+
+
+	public void setItens(List<Item> itens) {
+		this.itens = itens;
 	}
-	public Historico(String codigoVenda,int idItem,Date dataCompra,String marcaItem,int qtdEstoque,double preco,int idTipo,String nomeTipo,String formavenda) {
+
+
+	public Historico(String codigoVenda,int idItem,String dataCompra,String marcaItem,int qtdEstoque,double preco,int idTipo,String nomeTipo,String formavenda) {
     	setCodigoVenda(codigoVenda);
     	setIdItem(idItem);
     	setDataCompra(dataCompra);
@@ -26,7 +47,7 @@ public class Historico {
     	setItem(item);
     }
     
-	public Historico(String codigoVenda,int idItem,Date dataCompra) {
+	public Historico(String codigoVenda,int idItem,String dataCompra) {
 		setCodigoVenda(codigoVenda);
 		setIdItem(idItem);
 		setDataCompra(dataCompra);
@@ -58,10 +79,11 @@ public class Historico {
 		this.qtdPorItem = qtdPorItem;
 	}
 	
-	public Date getDataCompra() {
+	// metidas paleativas
+	public String getDataCompra() {
 		return dataCompra;
 	}
-	public void setDataCompra(Date dataCompra) {
+	public void setDataCompra(String dataCompra) {
 		this.dataCompra = dataCompra;
 	}
 }
