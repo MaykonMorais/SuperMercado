@@ -46,7 +46,7 @@ public class LoginController {
 			
 			if(pass) {
 				tela = new Principal();
-				tela.telaProdutos();
+				tela.telaProdutos(null);
 			}
 			else {
 				JOptionPane.showMessageDialog(null, "Login ou Senha Incorretos!");

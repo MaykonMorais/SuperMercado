@@ -1,6 +1,8 @@
 package view;
 
 
+import java.util.ArrayList;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -38,12 +40,13 @@ public class Principal extends Application {
 		}
 	}
 	
-	public void telaProdutos() {
+	public void telaProdutos(Object userData) {
 		try {
 			Parent tela = FXMLLoader.load(getClass().getResource("TelaProdutos.fxml"));
 			
 			Scene scene = new Scene(tela);
 			stage.setScene(scene);
+			notifyAllListeners("produtos", userData);
 			stage.show();
 			
 		} catch (Exception e) {
@@ -67,14 +70,30 @@ public class Principal extends Application {
 	public static void main(String args[]) {
 		launch();
 	}
+	private static ArrayList<OnChangeScreen> listeners = new ArrayList<>();
 	
-	public void telaPagamento() {
+	public static interface OnChangeScreen{
+		void onScreenChanged(String newScreen,Object userData);
+	}
+	
+	public static void addOnChangeScreenListener(OnChangeScreen newListener) {
+		listeners.add(newListener);
+	}
+	
+	private static void notifyAllListeners(String newScreen,Object userData) {
+		for(OnChangeScreen k: listeners)
+		k.onScreenChanged(newScreen,userData);
+		
+	}
+	
+	public void telaPagamento(Object userData) {
 		try {
 			Parent tela = FXMLLoader.load(getClass().getResource("telaPagamento.fxml"));
 			
 			Scene scene = new  Scene(tela);
 			
 			stage.setScene(scene);
+			notifyAllListeners("pagamento", userData);
 			stage.show();
 			
 		} catch (Exception e) {

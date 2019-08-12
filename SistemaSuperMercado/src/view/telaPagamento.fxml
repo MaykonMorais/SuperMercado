@@ -14,21 +14,22 @@
          </font>
       </Text>
       <TextField fx:id="valor_pago" layoutX="326.0" layoutY="20.0" promptText="Valor pago" />
-      <Text fx:id="valorPago" fontSmoothingType="LCD" layoutX="288.0" layoutY="142.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Valor Pago" wrappingWidth="200.0">
+      <Text fx:id="valorPago" fontSmoothingType="LCD" layoutX="288.0" layoutY="129.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Valor Pago" wrappingWidth="200.0">
          <font>
             <Font size="25.0" />
          </font>
       </Text>
-      <Text fx:id="valorCompra" fontSmoothingType="LCD" layoutX="288.0" layoutY="180.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Valor Compra" wrappingWidth="200.0">
+      <Text fx:id="valorCompra" fontSmoothingType="LCD" layoutX="288.0" layoutY="171.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Valor Compra" wrappingWidth="200.0">
          <font>
             <Font size="25.0" />
          </font>
       </Text>
-      <Text fx:id="result" layoutX="288.0" layoutY="235.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Resultado">
+      <Text fx:id="result" layoutX="288.0" layoutY="209.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Resultado" wrappingWidth="200.0">
          <font>
             <Font size="25.0" />
          </font>
       </Text>
       <Button layoutX="510.0" layoutY="20.0" mnemonicParsing="false" onAction="#subtrai" text="Pagar" textOverrun="LEADING_ELLIPSIS" />
+      <Button layoutX="500.0" layoutY="342.0" mnemonicParsing="false" onAction="#cancelar" text="Cancelar" />
    </children>
 </AnchorPane>

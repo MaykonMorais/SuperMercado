@@ -106,8 +106,9 @@ public class TelaDeProdutos implements Initializable{
     
     @FXML
     void finalizarCompra(ActionEvent event) {
+    	C.setPrecoTotal(valTot);
     	Principal tela = new Principal();
-    	tela.telaPagamento();
+    	tela.telaPagamento(C);
     	//historico.adicionaHistorico(C,carro,IdCompra.getText());
     	//valTot = 0.00;
     	//valorTotal.clear();

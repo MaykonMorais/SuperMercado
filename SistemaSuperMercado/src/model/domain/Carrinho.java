@@ -7,9 +7,17 @@ import javafx.collections.ObservableList;
 public class Carrinho {	
 	ArrayList<Item> items = new ArrayList<>();
 	
-	protected int qtdItem;
+	protected double precoTotal;
 	
 	
+	public double getPrecoTotal() {
+		return precoTotal;
+	}
+
+	public void setPrecoTotal(double precoTotal) {
+		this.precoTotal = precoTotal;
+	}
+
 	public ArrayList<Item> getItems() {
 		return items;
 	}
@@ -18,13 +26,6 @@ public class Carrinho {
 		items.add(i);
 	}
 	
-	public int getQtdItem() {
-		return qtdItem;
-	}
 
-
-	public void setQtdItem(int qtdItem) {
-		this.qtdItem = qtdItem;
-	}	
 
 }
