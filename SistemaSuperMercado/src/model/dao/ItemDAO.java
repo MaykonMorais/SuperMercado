@@ -66,7 +66,6 @@ public class ItemDAO {
 			PreparedStatement ps = con.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
 			
-			
 			while(rs.next()) {
 				if(rs.getString(2).equals(marcaItem)) {
 					item = new Item();
@@ -85,7 +84,6 @@ public class ItemDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 		return items;
 	}
 	
@@ -204,6 +202,7 @@ public class ItemDAO {
 		
 		return items;
 	}
+	
 	public Item itemProcura(Item item) {
 		Connection con = ConnectionFactory.getConnection();
 		String sql = "select * from item inner join tipo on tipo.idTipo = item.idTipo where marca = (?) ;";

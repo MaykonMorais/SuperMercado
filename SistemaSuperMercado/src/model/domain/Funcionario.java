@@ -1,10 +1,15 @@
 package model.domain;
 
 //garantir integridade
-public class Funcionario { // funcionario deve ser instanciado
-    protected int idFuncionario;
-    protected String nomeFuncionario;
-	
+public class Funcionario extends Pessoa { // funcionario deve ser instanciado
+    private int idFuncionario;
+    private String senha;
+    
+    public Funcionario(String nome, int idFuncionario, String senha) {
+    	super(nome);
+    	setIdFuncionario(idFuncionario);
+    	setSenha(senha);
+    }
     
     public int getIdFuncionario() {
 		return idFuncionario;
@@ -12,12 +17,15 @@ public class Funcionario { // funcionario deve ser instanciado
 	public void setIdFuncionario(int idFuncionario) {
 		this.idFuncionario = idFuncionario;
 	}
-	public String getNomeFuncionario() {
-		return nomeFuncionario;
+
+	public String getSenha() {
+		return senha;
 	}
-	public void setNomeFuncionario(String nomeFuncionario) {
-		this.nomeFuncionario = nomeFuncionario;
+
+	public void setSenha(String senha) {
+		this.senha = senha;
 	}
+	
 
    
 }

@@ -73,5 +73,5 @@ public class GereciamentoProdutosModel {
 		ObservableList<Item> i = FXCollections.observableArrayList();
 		i.add(items.itemProcura(item));
 		return i; 
-	}
+	} 
 }

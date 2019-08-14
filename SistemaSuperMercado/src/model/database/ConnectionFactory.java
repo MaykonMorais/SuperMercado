@@ -8,9 +8,10 @@ import java.sql.SQLException;
 import java.sql.DriverManager;
 
 public class ConnectionFactory {
+	
 	public static Connection getConnection () {
 		try {
-			return DriverManager.getConnection("jdbc:postgresql://localhost:5432/Estudo-BD", "postgres", "Maintcmlixo1234");
+			return DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "1234");
 			
 		} catch(Exception e) {
 			throw new RuntimeException(e);

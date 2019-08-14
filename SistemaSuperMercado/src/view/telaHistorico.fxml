@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
@@ -9,6 +8,7 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
@@ -33,8 +33,8 @@
             </Menu>
          </menus>
       </MenuBar>
-      <TextField fx:id="pesquisaItem" layoutX="30.0" layoutY="485.0" prefHeight="26.0" prefWidth="131.0" promptText="Codigo da Venda" style="-fx-border-color: black;" />
-      <Button layoutX="412.0" layoutY="486.0" mnemonicParsing="false" onAction="#verifica" prefHeight="26.0" prefWidth="78.0" text="Verificar" />
+      <TextField fx:id="codigoPesquisa" layoutX="30.0" layoutY="498.0" prefHeight="28.0" prefWidth="107.0" promptText="Codigo da Venda" style="-fx-border-color: black;" />
+      <Button layoutX="262.0" layoutY="499.0" mnemonicParsing="false" onAction="#verifica" prefHeight="26.0" prefWidth="78.0" text="Verificar" />
       <TableView fx:id="tabelaHistorico" layoutX="30.0" layoutY="68.0" prefHeight="404.0" prefWidth="464.0">
         <columns>
           <TableColumn fx:id="codigoVenda" prefWidth="110.0" text="Codigo Venda" />
@@ -42,12 +42,34 @@
             <TableColumn fx:id="dataCompra" prefWidth="139.0" text="Data Compra" />
         </columns>
       </TableView>
-      <DatePicker fx:id="dataConsulta" layoutX="176.0" layoutY="485.0" promptText="Data" style="-fx-border-color: black;" />
       <Text layoutX="210.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tabela De Vendas" wrappingWidth="131.0" />
-      <TextField fx:id="faturamento" layoutX="679.0" layoutY="123.0" prefHeight="26.0" prefWidth="99.0" />
-      <Text layoutX="514.0" layoutY="143.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Faturamento">
+      <TextField fx:id="idProdutoPesquisa" layoutX="161.0" layoutY="498.0" prefHeight="26.0" prefWidth="49.0" style="-fx-border-color: black;" />
+      <Text layoutX="30.0" layoutY="491.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Codigo" wrappingWidth="63.10009765625" />
+      <Text layoutX="161.0" layoutY="491.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Id Produto" />
+      <Text layoutX="568.0" layoutY="104.0" strokeType="OUTSIDE" strokeWidth="0.0" text="AREA DE TROCA" wrappingWidth="168.0">
          <font>
-            <Font size="23.0" />
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <TextField fx:id="codigoVendaPesquisa" layoutX="513.0" layoutY="149.0" prefHeight="26.0" prefWidth="232.0" style="-fx-border-color: #00FFFF;" />
+      <Text layoutX="513.0" layoutY="146.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Codigo da Venda">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+      <TextField fx:id="pesquisaTroca" layoutX="513.0" layoutY="283.0" prefHeight="26.0" prefWidth="162.0" />
+      <Line endX="114.0" layoutX="622.0" layoutY="247.0" startX="-100.0" />
+      <Text layoutX="513.0" layoutY="277.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pesquisa" wrappingWidth="110.93164062499989">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Text>
+      <Button layoutX="696.0" layoutY="283.0" mnemonicParsing="false" onAction="#pesquisaTroca" text="Pesquisar" />
+      <Button layoutX="579.0" layoutY="336.0" mnemonicParsing="false" onAction="#confirmaTroca" prefHeight="29.0" prefWidth="78.0" text="Trocar" />
+      <TextField fx:id="idProduto" layoutX="513.0" layoutY="204.0" prefHeight="26.0" prefWidth="111.0" style="-fx-border-color: #00FFFF;" />
+      <Text layoutX="511.0" layoutY="200.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID do Produto">
+         <font>
+            <Font size="16.0" />
          </font>
       </Text>
    </children>

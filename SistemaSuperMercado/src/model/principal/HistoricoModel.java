@@ -3,6 +3,8 @@ package model.principal;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.dao.HistoricoDAO;
@@ -18,27 +20,23 @@ public class HistoricoModel {
 		
 	}
 
-	public ObservableList<Historico> consultarHistorico(String nome){
-			ObservableList<Historico> historico = FXCollections.observableArrayList();
-			return historico;
+	public Historico consultarHistorico(Historico h) throws NullPointerException {
+			//System.out.println(historico.consultaEspecifica(h).getCodigoVenda());
+			
+			if(!historico.consultaEspecifica(h).getCodigoVenda().isEmpty()) {
+				return historico.consultaEspecifica(h);
+			} else {
+				throw new NullPointerException();
+			}
 	}
 	
 	public void adicionaHistorico(Carrinho carrinho,CarrinhoModel model,String codigo) {
-		
-		Historico hist = new Historico(codigo);
-		historico.adicionar(carrinho,hist);
-		}
-		public void adicionaHistorico(Carrinho carrinho,CarrinhoModel model,String codigo) {
 			
 			Historico hist = new Historico(codigo);
 			historico.adicionar(carrinho,hist);
 			historico.subtrai(carrinho);
 			model.limparCarrinho();
 		}
-		public String getCodigo() {
-		
-		model.limparCarrinho();
-	}
 	
 	public String getCodigo() {
 		return historico.geradorAleatorioManipulado();
@@ -55,6 +53,14 @@ public class HistoricoModel {
 		}
 		else {
 			throw new Exception();
+		}
+	}
+	public void atualizaHistorico(Historico hist) throws Exception {
+		if(hist.getCodigoVenda().isEmpty()) {
+			throw new Exception();
+		}
+		else {
+			historico.atualizaHistorico(hist);
 		}
 	}
 	

@@ -1,20 +1,28 @@
 package model.domain;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 public class Historico {
     private String codigoVenda;
-    private int idItem;
     private String dataCompra;
-    private List<Item> itens;
+    private int idItem;
+    private List<Item> itens = new ArrayList<Item>();
     
     private Item item;
+    
+    public Historico() {}
+    
     public Historico(String dataCompra) {
     	setDataCompra(dataCompra);
     }
    
-    	
+    public Historico(String codigoVenda,int idItem) {
+    	setCodigoVenda(codigoVenda);
+    	setIdItem(idItem);	
+    }
+    
 	/*
 	public Historico1(String codigoVenda) {
 		setCodigoVenda(codigoVenda);
@@ -24,6 +32,11 @@ public class Historico {
 	public List<Item> getItens() {
 		return itens;
 	}
+	
+	public void setItens(Item item) {
+		itens.add(item);
+	}
+	
 	public Item getItem() {
 		return item;
 	}
@@ -53,10 +66,11 @@ public class Historico {
 		setDataCompra(dataCompra);
 	}
 	
+	
     public int getIdItem() {
 		return idItem;
 	}
-
+    
 	public void setIdItem(int idItem) {
 		this.idItem = idItem;
 	}

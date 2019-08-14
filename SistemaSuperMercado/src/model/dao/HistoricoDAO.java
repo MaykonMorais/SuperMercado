@@ -20,8 +20,36 @@ import model.domain.Historico;
 import model.domain.Item;
 
 public class HistoricoDAO {
+	private static Connection con;
+	
+	public HistoricoDAO() {
+		this.con = ConnectionFactory.getConnection();
+	}
+	
+	public Historico consultaEspecifica(Historico historico) {
+		Historico h = new Historico();
+		String sql = "select numeroVenda, idItem from historicoVendas where numeroVenda = '" + historico.getCodigoVenda() + "' and idItem = " + historico.getIdItem() + ";";
+		
+		try {	
+			PreparedStatement ps = con.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+				
+			while(rs.next()) {
+				h.setCodigoVenda(rs.getString(1));
+				h.setIdItem(rs.getInt(2));
+			}
+			//System.out.println(h.getCodigoVenda());
+			//System.out.println(h.getIdItem());
+			rs.close();
+			ps.close();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return h;
+	}
+	
 	public ObservableList<Historico> consultaHistorico(String codigoVenda) {
-		Connection con = ConnectionFactory.getConnection();
 		Historico historico = null;
 		
 		ObservableList<Historico> historicos = FXCollections.observableArrayList();
@@ -201,9 +229,8 @@ public class HistoricoDAO {
 				PreparedStatement ps = con.prepareStatement(sql);
 				ResultSet rs = ps.executeQuery();
 				
-				while(rs.next()) {
-					historico = new Historico(rs.getString(1), rs.getInt(3), )
-					historicos.add(historico);
+				while(rs.next()) { // 1 - vendas 2 - marca(item) 3 - quantidade(historico) 4 - historico
+					item = new Item(rs.getString(2));
 					
 				}
 				rs.close();
@@ -215,5 +242,22 @@ public class HistoricoDAO {
 			
 			return historicos;
 		}
-
-	 }
+	 
+	 public void atualizaHistorico(Historico hist) {// atualizando o item do historico  
+		 PreparedStatement ps;
+			
+			String sql = "update historicoVendas set idItem = ? where numeroVenda = ?";	
+			//+ hist.getCodigoVenda() + "'";
+			
+			try {
+					ps = con.prepareStatement(sql);
+					ps.setInt(1, hist.getIdItem());
+					ps.setString(2, hist.getCodigoVenda());
+					
+					ps.execute();
+					ps.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+	 	}
+}

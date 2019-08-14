@@ -58,9 +58,11 @@ public class TelaPagamento  implements Initializable {
     	        try {
 					FileOutputStream fos=new FileOutputStream(caminho);
 					PDF pdf = new PDF(fos);
+					
 					Page page =new Page(pdf,Letter.LANDSCAPE);
 					pdf.close();
 					fos.flush();
+					
 				} catch (FileNotFoundException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

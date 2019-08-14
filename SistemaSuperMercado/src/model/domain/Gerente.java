@@ -4,7 +4,8 @@ public class Gerente extends Funcionario { // integridade de dados
 	private String senhaGerente;
 
 	// gerente vai usar um método autenticar no sistema (interface) 
-    public Gerente(int idFuncionario, String nomeUsuario, String senhaGerente) {
+    public Gerente(String nome, int idFuncionario, String senhaFuncionario) {
+    	super(nome, idFuncionario, senhaFuncionario);
     	
     }
 	
