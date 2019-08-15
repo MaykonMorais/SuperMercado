@@ -26,9 +26,9 @@
                   <MenuItem mnemonicParsing="false" onAction="#verHistorico" text="Consultar Historico" />
                </items>
             </Menu>
-            <Menu mnemonicParsing="false" onAction="#cadastrarFuncionario" text="Cadastrar">
+            <Menu mnemonicParsing="false" text="sair">
                <items>
-                  <MenuItem mnemonicParsing="false" onAction="#cadastrarFuncionario" text="Cadastrar Funcionario" />
+                  <MenuItem mnemonicParsing="false" onAction="#sair" text="Logout" />
                </items>
             </Menu>
          </menus>

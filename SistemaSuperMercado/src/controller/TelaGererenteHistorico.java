@@ -111,7 +111,8 @@ public class TelaGererenteHistorico implements Initializable {
 
     @FXML
     void sair(ActionEvent event) {
-    	
+    	Principal tela = new Principal();
+    	tela.telaLogin();
     }
 
     @FXML

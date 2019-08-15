@@ -105,19 +105,12 @@ public class TelaDeProdutos implements Initializable{
     
     @FXML
     void finalizarCompra(ActionEvent event) {
-    	 int i =0;
-         System.out.println(""+C.getItems().get(i).getIdItem());
-     	System.out.println(C.getItems().get(i).getMarcaItem());
-     	System.out.println(""+C.getItems().get(i).getQtdEstoque());
-     	System.out.println(""+C.getItems().get(i).getPrecoItem());
-     	System.out.println("+"+C.getItems().get(i).getValorTotal());
-    	
     	C.setPrecoTotal(valTot);
     	Principal tela = new Principal();
     	tela.telaPagamento(C);
     	historico.adicionaHistorico(C,carro,IdCompra.getText());
     	valTot = 0.00;
-    	
+    	C.getItems().clear();
     	IdCompra.setText(historico.getCodigo());
     }
 
@@ -126,7 +119,6 @@ public class TelaDeProdutos implements Initializable{
     	carro.limparCarrinho();
     	valTot = 0.00;
     	valorTotal.clear();
-    	C.getItems().clear();
     	carrinho.getItems().clear();
     }
 
@@ -147,6 +139,7 @@ public class TelaDeProdutos implements Initializable{
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		IdCompra.setDisable(true);
 		IdCompra.setText(historico.getCodigo());	
+		C.getItems().clear();
 	}
 
 }

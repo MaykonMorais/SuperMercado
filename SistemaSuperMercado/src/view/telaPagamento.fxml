@@ -30,6 +30,6 @@
          </font>
       </Text>
       <Button layoutX="510.0" layoutY="20.0" mnemonicParsing="false" onAction="#subtrai" text="Pagar" textOverrun="LEADING_ELLIPSIS" />
-      <Button layoutX="500.0" layoutY="342.0" mnemonicParsing="false" onAction="#cancelar" text="Cancelar" />
+      <Button layoutX="500.0" layoutY="342.0" mnemonicParsing="false" onAction="#cancelar" text="Sair" />
    </children>
 </AnchorPane>

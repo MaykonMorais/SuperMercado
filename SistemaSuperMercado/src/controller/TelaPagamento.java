@@ -44,7 +44,8 @@ public class TelaPagamento  implements Initializable {
     
     @FXML
     
-    private Carrinho car = new Carrinho();
+    private Carrinho c = new Carrinho();
+    private Carrinho carro = new Carrinho();
     @FXML
     void subtrai(ActionEvent event) {
     	valorPago.setText(valor_pago.getText());
@@ -77,17 +78,18 @@ public class TelaPagamento  implements Initializable {
 				// TODO Auto-generated method stub
 				
 					valorCompra.setDisable(true);
-					if(car instanceof Carrinho) { 
-					car = (Carrinho) userData;
-						valorCompra.setText(""+car.getPrecoTotal());
+					if(c instanceof Carrinho) { 
+					c = (Carrinho) userData ;
+					for(int i=0;i<c.getItems().size();++i) {
+						carro.setItems(c.getItems().get(i));
+					}
+					valorCompra.setText(""+c.getPrecoTotal());
 					}	
 			}
 		});
 	}
 	
 	public  void gerandoPDF() {
-  
-    	
     	try {
     		Document pdf = new Document();
     		try {
@@ -122,17 +124,18 @@ public class TelaPagamento  implements Initializable {
 	            table.addCell(new Paragraph("Valor Unitário", font9Preto));
 	            table.addCell(new Paragraph("Valor Final",font9Preto));
 	            double valor_total=0;
-	            
 	           
-	           for(int k=0;k<car.getItems().size();++k) {
-	            	table.addCell(""+car.getItems().get(k).getIdItem());
-	            	table.addCell(car.getItems().get(k).getMarcaItem());
-	            	table.addCell(""+car.getItems().get(k).getQtdEstoque());
-	            	table.addCell(""+car.getItems().get(k).getPrecoItem());
-	            	table.addCell("+"+car.getItems().get(k).getValorTotal());
-	            	valor_total+=car.getItems().get(k).getValorTotal();
+	           for (int i=0;i<carro.getItems().size();++i) {
+	        	   table.addCell(""+carro.getItems().get(i).getIdItem());
+		            table.addCell(""+carro.getItems().get(i).getMarcaItem());
+		            table.addCell(""+carro.getItems().get(i).getQtdEstoque());
+		            table.addCell(""+carro.getItems().get(i).getPrecoItem());
+		            table.addCell("+"+carro.getItems().get(i).getValorTotal()); 
+		            valor_total+=carro.getItems().get(i).getValorTotal();
 	           }
-	           
+	            	
+	            	
+	            
 	            table.addCell("");
            		table.addCell("");
            		table.addCell("");

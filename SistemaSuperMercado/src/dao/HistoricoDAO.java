@@ -79,7 +79,7 @@ public class HistoricoDAO {
 		List<Historico> historicos = new ArrayList<Historico>();
 		
 		Historico historico = null;
-		String sql = "select * from historicovendas;";
+		String sql = "select * from vendoHistorico;";
 		String gambiarra = null;
 		
 		try {

@@ -7,7 +7,7 @@ import java.sql.SQLException;
 
 import model.database.ConnectionFactory;
 
-public class LoginModelFuncionario {
+public class LoginModelFuncionario implements LoginFuncionarios{
 	public boolean verificaFuncionario(String nomeFuncionario,String senhaFuncionario) {
 		Connection conect = ConnectionFactory.getConnection();
 		String sql= "select * from Funcionario";
