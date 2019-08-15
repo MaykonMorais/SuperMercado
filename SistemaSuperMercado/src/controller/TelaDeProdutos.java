@@ -109,10 +109,9 @@ public class TelaDeProdutos implements Initializable{
     	C.setPrecoTotal(valTot);
     	Principal tela = new Principal();
     	tela.telaPagamento(C);
-    	//historico.adicionaHistorico(C,carro,IdCompra.getText());
+    	historico.adicionaHistorico(C,carro,IdCompra.getText());
     	//valTot = 0.00;
     	//valorTotal.clear();
-    	//carrinho.getItems().clear();
     	//IdCompra.setText(historico.getCodigo());
     }
 

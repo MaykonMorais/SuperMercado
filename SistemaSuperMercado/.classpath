@@ -52,6 +52,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.fx.ide.jdt.core.JAVAFX_CONTAINER"/>
-	<classpathentry kind="lib" path="/home/thomas/git/SuperMercado/SistemaSuperMercado/Utilitarios/PDFjet.jar"/>
+	<classpathentry kind="lib" path="/home/thomas/git/SuperMercado/SistemaSuperMercado/Utilitarios/itextpdf-5.4.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -7,7 +7,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.Pane;
+
 import javafx.stage.Stage;
 
 public class Principal extends Application {
@@ -47,6 +47,20 @@ public class Principal extends Application {
 			Scene scene = new Scene(tela);
 			stage.setScene(scene);
 			notifyAllListeners("produtos", userData);
+			stage.show();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+
+	public void telaProdutos() {
+		try {
+			Parent tela = FXMLLoader.load(getClass().getResource("TelaProdutos.fxml"));
+			
+			Scene scene = new Scene(tela);
+			stage.setScene(scene);
 			stage.show();
 			
 		} catch (Exception e) {

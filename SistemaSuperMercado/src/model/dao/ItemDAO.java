@@ -217,6 +217,7 @@ public class ItemDAO {
 				rs = ps.executeQuery();
 				
 			while(rs.next()) {
+				if(rs.getString(2).equals(item.getMarcaItem())) {
 				if(rs.getInt(3)>=item.getQtdEstoque()) {
 					item.setIdItem(rs.getInt(1));
 					item.setMarcaItem(rs.getString(2));
@@ -224,9 +225,12 @@ public class ItemDAO {
 					item.setValorTotal(item.getQtdEstoque(), item.getPrecoItem());
 					tipo = new Tipo(rs.getInt(5),rs.getString(7),rs.getString(8));
 					item.setTipo(tipo);
-				}else {
-				JOptionPane.showMessageDialog(null, "Quantidade exigida maior do que o estoque");
-				item = null ;
+					}else{
+						JOptionPane.showMessageDialog(null, "Quantidade Insuficiente no estoque");
+					}
+				}else{
+					JOptionPane.showMessageDialog(null, "Porfavor entre com um valor valido");
+					item = null ;
 			}
 		}
 			rs.close();

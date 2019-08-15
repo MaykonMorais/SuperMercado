@@ -2,29 +2,32 @@ package controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import view.Principal;
-import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-import model.domain.Carrinho;
-import com.pdfjet.Letter;
-import com.pdfjet.PDF;
-import com.pdfjet.Page;
 
-import javafx.stage.*;
-import javafx.application.Application;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
+import com.itextpdf.text.BaseColor;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.PageSize;
+import com.itextpdf.text.Paragraph;
+
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
+import model.domain.Carrinho;
+
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
+
 import javafx.scene.control.TextField;
-import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
-import javafx.stage.FileChooser;
+
 
 public class TelaPagamento  implements Initializable {
 	@FXML
@@ -41,7 +44,6 @@ public class TelaPagamento  implements Initializable {
     
     @FXML
     
-    private JFileChooser fc = new JFileChooser();
     private Carrinho car = new Carrinho();
     @FXML
     void subtrai(ActionEvent event) {
@@ -54,38 +56,15 @@ public class TelaPagamento  implements Initializable {
     	}else {
     		JOptionPane.showMessageDialog(null, "Compra Realizada Com Sucesso!\n Porfavor aguarde enquanto Imprimimos seu Comprovante");
     	result.setText("Troco: "+calculo);
-    	
-    		fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
-    		int i = fc.showSaveDialog(null);
-    		if (i == 1) {
-    	    } else {
-    	        File arquivo = fc.getSelectedFile();
-    	        String caminho = arquivo.getPath();
-    	        try {
-					FileOutputStream fos=new FileOutputStream(caminho);
-					PDF pdf = new PDF(fos);
-					Page page =new Page(pdf,Letter.LANDSCAPE);
-					page.setDefaultLineWidth();
-					page.closePath();
-					pdf.close();
-					fos.flush();
-				} catch (FileNotFoundException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-    	    }
-    		Principal tela = new Principal();
-        	tela.telaProdutos(null);
+    		gerandoPDF();
     	}
-    }
+    	}
+    
     
     @FXML
     void cancelar(ActionEvent event) {
     	Principal tela = new Principal();
-    	tela.telaProdutos(null);
+    	tela.telaProdutos();
     }
 
 	@Override
@@ -105,6 +84,69 @@ public class TelaPagamento  implements Initializable {
 			}
 		});
 	}
-		
 	
+	public  void gerandoPDF() {
+  
+    	
+    	try {
+    		Document pdf = new Document();
+    		try {
+				PdfWriter.getInstance(pdf,new FileOutputStream("/home/thomas/WorkSpace/Test.pdf"));
+			} catch (DocumentException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+    		pdf.open();
+    		pdf.setPageSize(PageSize.A4);
+    		
+    		try {
+    			pdf.addTitle("COMPORVANTE");
+				
+				
+				PdfPCell cabecalho = new PdfPCell(new Paragraph("Lista de Items"));
+				cabecalho.setHorizontalAlignment(Element.ALIGN_CENTER);
+				cabecalho.setBorder(PdfPCell.NO_BORDER);
+				cabecalho.setBackgroundColor(new BaseColor(100,150,200));
+				cabecalho.setColspan(5);
+				PdfPTable table = new PdfPTable(5);
+				table.addCell(cabecalho);
+				//Image imagem =  Image.getInstance("/home/thomas/Imagens/astronaut_on_the_moon_victory-wallpaper-1366x768.jpg");
+				//imagem.scaleToFit(200,400);
+				Font font9Preto = new Font(Font.FontFamily.TIMES_ROMAN, 14, Font.NORMAL, BaseColor.BLACK);
+				
+	            
+	            table.getDefaultCell().setBorder(PdfPCell.BOTTOM); 
+	            table.addCell(new Paragraph("ID", font9Preto));
+	            table.addCell(new Paragraph("Marca", font9Preto));
+	            table.addCell(new Paragraph("Quantidade", font9Preto));
+	            table.addCell(new Paragraph("Valor Unitário", font9Preto));
+	            table.addCell(new Paragraph("Valor Final",font9Preto));
+	            double valor_total=0;
+	           for(int i=0;i<car.getItems().size();++i) {
+	            	table.addCell(""+car.getItems().get(i).getIdItem());
+	            	table.addCell(car.getItems().get(i).getMarcaItem());
+	            	table.addCell(""+car.getItems().get(i).getQtdEstoque());
+	            	table.addCell(""+car.getItems().get(i).getPrecoItem());
+	            	table.addCell("+"+car.getItems().get(i).getValorTotal());
+	            	valor_total+=car.getItems().get(i).getValorTotal();
+	           }
+	           
+	            table.addCell("");
+           		table.addCell("");
+           		table.addCell("");
+           		table.addCell("");
+	            table.addCell(""+valor_total);
+				//pdf.add(imagem);
+				pdf.add(table);	
+			} catch (DocumentException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}	
+    		pdf.close();
+    	}catch(IOException ioe) {
+    		ioe.printStackTrace();
+    	}finally{
+    		
+    	}
+	}
 }
