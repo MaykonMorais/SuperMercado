@@ -1,4 +1,4 @@
-package model.domain;
+package beans;
 
 public abstract class Cliente{
 	protected int idCliente;

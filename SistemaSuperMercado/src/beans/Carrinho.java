@@ -1,4 +1,4 @@
-package model.domain;
+package beans;
 
 import java.util.ArrayList;
 

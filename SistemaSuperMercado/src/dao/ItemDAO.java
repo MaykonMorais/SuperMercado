@@ -1,4 +1,4 @@
-package model.dao;
+package dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,11 +10,11 @@ import java.util.List;
 
 import javax.swing.JOptionPane;
 
+import beans.Item;
+import beans.Tipo;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.database.ConnectionFactory;
-import model.domain.Item;
-import model.domain.Tipo;
 
 public class ItemDAO {
 	private static Connection con;

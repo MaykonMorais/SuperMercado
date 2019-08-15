@@ -1,6 +1,6 @@
 // camada de persistencia (Cuidado!)
 
-package model.dao;
+package dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,12 +8,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import beans.Carrinho;
+import beans.Item;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.database.ConnectionFactory;
-import model.domain.Carrinho;
-import model.domain.Item;
-import model.domain.Carrinho;
 public class CarrinhoDAO {
 	//gerente
 	public void carrinhoAdiciona(Carrinho carrinho,Item item) {

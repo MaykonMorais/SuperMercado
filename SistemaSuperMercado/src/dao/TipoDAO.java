@@ -1,4 +1,4 @@
-package model.dao;
+package dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -6,9 +6,9 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import beans.Item;
+import beans.Tipo;
 import model.database.ConnectionFactory;
-import model.domain.Item;
-import model.domain.Tipo;
 
 public class TipoDAO {
 	private Connection con;

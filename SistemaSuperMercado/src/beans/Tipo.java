@@ -1,4 +1,4 @@
-package model.domain;
+package beans;
 
 public class Tipo {
 	private int idTipo;

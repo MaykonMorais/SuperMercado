@@ -1,4 +1,4 @@
-package model.domain;
+package beans;
 
 public class Item {
     private int idItem;
@@ -9,6 +9,9 @@ public class Item {
 
     private Tipo tipo;
     
+    public Item(String marca) {
+    	setMarcaItem(marca);
+    }
     public Item() {}
     
     public Item(int idItem,String marcaItem,int qtdEstoque,double precoItem) {

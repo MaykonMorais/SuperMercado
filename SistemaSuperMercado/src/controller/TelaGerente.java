@@ -17,10 +17,10 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import model.domain.Item;
-import model.domain.Tipo;
+import beans.*;
 import model.principal.GereciamentoProdutosModel;
 import model.principal.TipoModel;
+import view.Principal;
 
 public class TelaGerente implements Initializable {
 
@@ -189,7 +189,13 @@ public class TelaGerente implements Initializable {
     	btnAdicionar.setDisable(false);
     	confirmar.setDisable(true);
     }
-
+    
+    @FXML
+    void verHistorico(ActionEvent event) {
+    	Principal tela = new Principal();
+    	tela.telaHistorico();
+    }
+    
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		TipoModel tipos = new TipoModel();
@@ -205,5 +211,16 @@ public class TelaGerente implements Initializable {
 		marcaProduto.clear();
 		precoProduto.clear();
 		qtdProduto.clear();	
+	}
+	
+	@FXML 
+	void gerenciamentoProdutos(ActionEvent event) {
+		Principal tela = new Principal();
+		tela.telaGerente();
+	}
+
+	@FXML public void sair(ActionEvent event) {
+		Principal tela = new Principal();
+		tela.telaLogin();
 	}
 }

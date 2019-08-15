@@ -1,10 +1,10 @@
-package model.dao;
+package dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 
+import beans.Gerente;
 import model.database.ConnectionFactory;
-import model.domain.Gerente;
 
 //import model.domain.Gerente;
 

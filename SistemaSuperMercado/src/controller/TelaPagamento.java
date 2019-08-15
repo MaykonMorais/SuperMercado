@@ -19,8 +19,8 @@ import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
-import model.domain.Carrinho;
 
+import beans.Carrinho;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -122,13 +122,15 @@ public class TelaPagamento  implements Initializable {
 	            table.addCell(new Paragraph("Valor Unitário", font9Preto));
 	            table.addCell(new Paragraph("Valor Final",font9Preto));
 	            double valor_total=0;
-	           for(int i=0;i<car.getItems().size();++i) {
-	            	table.addCell(""+car.getItems().get(i).getIdItem());
-	            	table.addCell(car.getItems().get(i).getMarcaItem());
-	            	table.addCell(""+car.getItems().get(i).getQtdEstoque());
-	            	table.addCell(""+car.getItems().get(i).getPrecoItem());
-	            	table.addCell("+"+car.getItems().get(i).getValorTotal());
-	            	valor_total+=car.getItems().get(i).getValorTotal();
+	            
+	           
+	           for(int k=0;k<car.getItems().size();++k) {
+	            	table.addCell(""+car.getItems().get(k).getIdItem());
+	            	table.addCell(car.getItems().get(k).getMarcaItem());
+	            	table.addCell(""+car.getItems().get(k).getQtdEstoque());
+	            	table.addCell(""+car.getItems().get(k).getPrecoItem());
+	            	table.addCell("+"+car.getItems().get(k).getValorTotal());
+	            	valor_total+=car.getItems().get(k).getValorTotal();
 	           }
 	           
 	            table.addCell("");

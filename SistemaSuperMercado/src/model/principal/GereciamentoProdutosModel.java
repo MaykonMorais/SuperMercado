@@ -4,11 +4,11 @@ import java.util.List;
 
 import javax.swing.JOptionPane;
 
+import beans.Item;
+import beans.Tipo;
+import dao.ItemDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import model.dao.ItemDAO;
-import model.domain.Item;
-import model.domain.Tipo;
 
 public class GereciamentoProdutosModel {
 	ItemDAO items = new ItemDAO();

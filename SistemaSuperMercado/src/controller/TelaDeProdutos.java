@@ -5,6 +5,8 @@ import java.util.ResourceBundle;
 
 import javax.swing.JOptionPane;
 
+import beans.Carrinho;
+import beans.Item;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -13,8 +15,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import model.domain.Carrinho;
-import model.domain.Item;
 import view.Principal;
 import model.principal.*;
 
@@ -77,7 +77,6 @@ public class TelaDeProdutos implements Initializable{
     	
     	carro.adicionar(I,C);
     			//FXCollections.observableArrayList(i.itemProcura(nomeProduto.getText()));
-    	
     	valTot += x.get(0).getValorTotal();
     	
     	if(!p.isEmpty()) {
@@ -106,13 +105,20 @@ public class TelaDeProdutos implements Initializable{
     
     @FXML
     void finalizarCompra(ActionEvent event) {
+    	 int i =0;
+         System.out.println(""+C.getItems().get(i).getIdItem());
+     	System.out.println(C.getItems().get(i).getMarcaItem());
+     	System.out.println(""+C.getItems().get(i).getQtdEstoque());
+     	System.out.println(""+C.getItems().get(i).getPrecoItem());
+     	System.out.println("+"+C.getItems().get(i).getValorTotal());
+    	
     	C.setPrecoTotal(valTot);
     	Principal tela = new Principal();
     	tela.telaPagamento(C);
     	historico.adicionaHistorico(C,carro,IdCompra.getText());
-    	//valTot = 0.00;
-    	//valorTotal.clear();
-    	//IdCompra.setText(historico.getCodigo());
+    	valTot = 0.00;
+    	
+    	IdCompra.setText(historico.getCodigo());
     }
 
     @FXML

@@ -6,11 +6,11 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import beans.Carrinho;
+import beans.Item;
+import dao.CarrinhoDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import model.domain.Carrinho;
-import model.domain.Item;
-import model.dao.CarrinhoDAO;
 import model.database.ConnectionFactory;
 import model.domain.*;
 public class CarrinhoModel {

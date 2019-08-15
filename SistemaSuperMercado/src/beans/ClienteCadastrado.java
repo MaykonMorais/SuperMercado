@@ -1,4 +1,4 @@
-package model.domain;
+package beans;
 
 public class ClienteCadastrado extends Cliente {
 	private int cpf;

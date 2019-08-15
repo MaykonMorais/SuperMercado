@@ -2,8 +2,8 @@ package model.principal;
 
 import java.util.List;
 
-import model.dao.TipoDAO;
-import model.domain.Tipo;
+import beans.Tipo;
+import dao.TipoDAO;
 
 public class TipoModel {
 	public List<Tipo> procuraTipo() {

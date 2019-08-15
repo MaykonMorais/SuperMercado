@@ -1,4 +1,4 @@
-package model.dao;
+package dao;
 
 public interface LoginFuncionarios {
 	
